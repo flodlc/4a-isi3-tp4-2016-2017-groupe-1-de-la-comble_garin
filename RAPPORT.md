@@ -1,11 +1,13 @@
-**Nom/Prénom Etudiant 1 :**
+**GARIN Lucas**
 
-**Nom/Prénom Etudiant 2 :**
+**PRIEUR DE LA COMBLE Florian**
 
 # Rapport TP4
 
 ## Question 1
-*Exprimer les données de test*
+![IMAGE](images/tp4.PNG "Lamba expression")
+
+nj
 
 ## Question 2
 *Rien à rédiger*
