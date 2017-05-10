@@ -5,7 +5,7 @@
 # Rapport TP4
 
 ## Question 1
-![IMAGE](images/tp4.PNG)
+![IMAGE](images/tp4.png)
 
 "Diagramme de classe initial"
 
@@ -22,7 +22,7 @@ Enfin, le main est dans la méthode SimpleLogo. Il faudrait plutot créer un lau
 application.
 
 ## Question 2
-![IMAGE](images/tp4_2.PNG)
+![IMAGE](images/tp4_2.png)
 
 "Diagramme du code suivant le modèle MVC"
 
