@@ -184,6 +184,7 @@ public class Tortue extends Observable
 		for (int i=0;i<4;i++) {
 			avancer(100);
 			droite(90);
+			notify();
 		}
 	}
 
@@ -191,6 +192,7 @@ public class Tortue extends Observable
 		for (int j=0;j<a;j++) {
 			avancer(n);
 			droite(360/a);
+			notify();
 		}
 	}
 
@@ -200,6 +202,7 @@ public class Tortue extends Observable
 			avancer(n);
 			droite(360/a);
 			n = n+1;
+			notify();
 		}
 	}
 }
