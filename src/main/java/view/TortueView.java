@@ -24,6 +24,6 @@ public class TortueView implements Observer{
     }
 
     public void update(Observable o, Object arg) {
-        
+
     }
 }

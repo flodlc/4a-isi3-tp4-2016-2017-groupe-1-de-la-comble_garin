@@ -76,9 +76,7 @@ public class FeuilleDessinView extends JPanel implements Observer{
 	GETTERS
 	 */
 
-	public TortueView getTortueView() {
-		return tortueView;
-	}
+
 
 
 }
