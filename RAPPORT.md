@@ -20,7 +20,7 @@ Enfin, le main est dans la méthode SimpleLogo. Il faudrait plutot créer un lau
 application.
 
 ## Question 2
-![IMAGE](images/tp4.PNG "Diagramme du code suivant le modèle MVC")
+![IMAGE](images/tp4_2.PNG "Diagramme du code suivant le modèle MVC")
 
 *Rien à rédiger*
 
