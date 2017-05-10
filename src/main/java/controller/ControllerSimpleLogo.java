@@ -1,6 +1,7 @@
 package controller;
 
 import model.Tortue;
+import view.FormeRectangle;
 import view.SimpleLogoView;
 
 import java.awt.event.ActionEvent;
