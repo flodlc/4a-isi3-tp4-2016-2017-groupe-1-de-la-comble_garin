@@ -1,8 +1,8 @@
 package view;
 
-import javafx.scene.shape.Polygon;
 import model.Tortue;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /**

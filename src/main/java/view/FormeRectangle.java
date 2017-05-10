@@ -1,9 +1,7 @@
 package view;
 
-import javafx.scene.shape.Polygon;
+import java.awt.*;
 import model.Tortue;
-
-import java.util.ArrayList;
 
 /**
  * Created by calvi on 10/05/2017.
@@ -12,24 +10,25 @@ public class FormeRectangle implements Forme {
 
     public Polygon getPolygon(Tortue tortue) {
 
+        Polygon polygon = new Polygon();
+
         int x = tortue.getX();
         int y = tortue.getY();
         int taille = tortue.getTaille();
-        int[] listX = new int[4];
-        int[] listY = new int[4];
         //point haut gauche
-        listX[0] = x;
-        listY[0] = y;
+        Point p1 = new Point(x, y);
+        polygon.addPoint(p1.x, p1.y);
         //point haut droite
-        listX[1] = x + taille;
-        listY[1] = y;
+        Point p2 = new Point(x + taille, y);
+        polygon.addPoint(p2.x, p2.y);
         //point bas droite
-        listX[2] = x + taille;
-        listX[2] = x - taille;
-        //point bas gauche
-        listX[3] = x;
-        listY[3] = y - taille;
+        Point p3 = new Point(x + taille, y - taille);
+        polygon.addPoint(p3.x, p3.y);
 
-        return new Polygon(listX[0], listY[0], 4);
+        //point bas gauche
+        Point p4 = new Point(x, y - taille);
+        polygon.addPoint(p4.x, p4.y);
+
+        return polygon;
     }
 }
