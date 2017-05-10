@@ -1,7 +1,7 @@
 package view;// package logo;
 
 
-import controller.Controller;
+import controller.ControllerSimpleLogo;
 import model.Tortue;
 
 import javax.swing.*;
@@ -34,14 +34,14 @@ public class SimpleLogoView extends JFrame {
 
 	private FeuilleDessinView feuilleDessinView;
 	private JTextField inputValue;
-	private Controller controller;
+	private ControllerSimpleLogo controller;
 
 	
-	private void quitter() {
+	public void quitter() {
 		System.exit(0);
 	}
 
-	public SimpleLogoView(Tortue tortue, Controller controller) {
+	public SimpleLogoView(Tortue tortue, ControllerSimpleLogo controller) {
 		super("un logo tout simple");
 		this.feuilleDessinView = new FeuilleDessinView();
 		this.controller = controller;
