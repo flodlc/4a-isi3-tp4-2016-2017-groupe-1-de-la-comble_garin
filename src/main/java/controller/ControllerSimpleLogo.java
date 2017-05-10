@@ -51,14 +51,14 @@ public class ControllerSimpleLogo implements ActionListener {
 
             } else if (actionCommand.equals("Droite")) {
                 try {
-                    int v = Integer.parseInt(simpleLogoView.getInputValue.getText());
+                    int v = Integer.parseInt(simpleLogoView.getInputValue());
                     currentTortue.droite(v);
                 } catch (NumberFormatException ex) {
                     System.err.println("Ce n'est pas un nombre : " + simpleLogoView.getInputValue());
                 }
             } else if (actionCommand.equals("Gauche")) {
                 try {
-                    int v = Integer.parseInt(simpleLogoView.getInputValue.getText());
+                    int v = Integer.parseInt(simpleLogoView.getInputValue());
                     currentTortue.gauche(v);
                 } catch (NumberFormatException ex) {
                     System.err.println("Ce n'est pas un nombre : " + simpleLogoView.getInputValue());
@@ -72,9 +72,9 @@ public class ControllerSimpleLogo implements ActionListener {
             else if (actionCommand.equals("Proc3"))
                 currentTortue.spiral(50,40,6);
             else if (actionCommand.equals("Effacer"))
-                currentTortue.effacer();
+                SimpleLogoView.effacer();
             else if (actionCommand.equals("Quitter"))
-                currentTortue.quitter();
+                SimpleLogoView.quitter();
         }
     }
 }
