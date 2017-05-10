@@ -21,19 +21,26 @@ import java.util.Observer;
 
 
 
-public class FeuilleDessinView extends JPanel implements Observer{
+public class FeuilleDessinView extends JPanel implements Observer {
 	private ArrayList<Tortue> tortues; // la liste des tortues enregistrees
 
 	private TortueView tortueView;
 	private Tortue tortue;
+	private TortueView[] tortueViews;
 
 	public FeuilleDessinView(Tortue tortue) {
 
 		this.tortue = tortue;
 		this.tortueView = new TortueView(tortue);
 
-
 	//	tortues = new ArrayList<Tortue>();
+	}
+
+	public void feuilleDessinInit() {
+		setBackground(Color.white);
+		setSize(new Dimension(600,400));
+		setPreferredSize(new Dimension(600,400));
+		addTortue(tortue);
 	}
 
 	public void addTortue(Tortue o) {
@@ -61,9 +68,10 @@ public class FeuilleDessinView extends JPanel implements Observer{
 	}
 	
 	public void showTurtles(Graphics g) {
-		for(Iterator it = tortues.iterator();it.hasNext();) {
-			Tortue t = (Tortue) it.next();
-			t.drawTurtle(g);
+		for (Iterator it = tortues.iterator();it.hasNext();) {
+			Tortue tortue = (Tortue) it.next();
+			Polygon polygon = tortueView.getDessinTortue();
+			g.fillPolygon(polygon);
 		}
 	}
 
