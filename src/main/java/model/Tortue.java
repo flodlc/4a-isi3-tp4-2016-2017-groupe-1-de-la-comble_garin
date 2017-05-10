@@ -47,6 +47,7 @@ public class Tortue extends Observable
 		this.y = y;
 		this.forme = forme;
 		this.taille = taille;
+		System.out.println("Tortue crée");
 	}
 
 	public void reset() {
