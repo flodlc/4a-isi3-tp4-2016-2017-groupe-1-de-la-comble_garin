@@ -4,6 +4,7 @@ import model.Tortue;
 import view.FormeRectangle;
 import view.SimpleLogoView;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
