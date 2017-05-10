@@ -27,6 +27,7 @@ public class FeuilleDessinView extends JPanel implements Observer {
     public FeuilleDessinView() {
         tortues = new ArrayList<Tortue>();
         tortueViews = new ArrayList<TortueView>();
+        feuilleDessinInit();
     }
 
     public void feuilleDessinInit() {
@@ -36,6 +37,7 @@ public class FeuilleDessinView extends JPanel implements Observer {
     }
 
     public void addTortue(Tortue tortue) {
+        tortue.addObserver(this);
         TortueView tortueView = new TortueView(tortue);
         tortueViews.add(tortueView);
     }

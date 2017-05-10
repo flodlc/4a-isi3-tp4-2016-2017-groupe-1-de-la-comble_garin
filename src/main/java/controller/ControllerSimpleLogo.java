@@ -37,10 +37,9 @@ public class ControllerSimpleLogo implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent actionEvent) {
-        System.out.println("event entendu");
         Object obj = actionEvent.getSource();
         String actionCommand = actionEvent.getActionCommand();
-        if (obj instanceof JMenuItem) {
+        if (obj instanceof javax.swing.JButton) {
             // actions des boutons du haut
             if (actionCommand.equals("Avancer")) {
                 System.out.println("commande avancer");
@@ -52,6 +51,7 @@ public class ControllerSimpleLogo implements ActionListener {
                 }
 
             } else if (actionCommand.equals("Droite")) {
+                System.out.println("commande Droite");
                 try {
                     int v = Integer.parseInt(simpleLogoView.getInputValue());
                     currentTortue.droite(v);
@@ -59,6 +59,7 @@ public class ControllerSimpleLogo implements ActionListener {
                     System.err.println("Ce n'est pas un nombre : " + simpleLogoView.getInputValue());
                 }
             } else if (actionCommand.equals("Gauche")) {
+                System.out.println("commande Gauche");
                 try {
                     int v = Integer.parseInt(simpleLogoView.getInputValue());
                     currentTortue.gauche(v);

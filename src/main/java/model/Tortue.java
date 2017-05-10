@@ -83,6 +83,7 @@ public class Tortue extends Observable
 	}
 
 	public void avancer(int dist) {
+		System.out.println(this.countObservers());
 		int newX = (int) Math.round(x+dist*Math.cos(ratioDegRad*dir));
 		int newY = (int) Math.round(y+dist*Math.sin(ratioDegRad*dir));
 	/*
@@ -100,6 +101,8 @@ public class Tortue extends Observable
 */
 		x = newX;
 		y = newY;
+		setChanged();
+		notifyObservers();
 	}
 
 	public void droite(int ang) {
@@ -126,7 +129,13 @@ public class Tortue extends Observable
 		for (int i=0;i<4;i++) {
 			avancer(100);
 			droite(90);
-			notify();
+			setChanged();
+			notifyObservers();
+			try {
+				Thread.sleep(1000);
+			} catch (Exception e) {
+				System.out.print(e.getMessage());
+			}
 		}
 	}
 
@@ -134,7 +143,13 @@ public class Tortue extends Observable
 		for (int j=0;j<a;j++) {
 			avancer(n);
 			droite(360/a);
-			notify();
+			setChanged();
+			notifyObservers();
+			try {
+				Thread.sleep(1000);
+			} catch (Exception e) {
+				System.out.print(e.getMessage());
+			}
 		}
 	}
 
@@ -144,7 +159,13 @@ public class Tortue extends Observable
 			avancer(n);
 			droite(360/a);
 			n = n+1;
-			notify();
+			setChanged();
+			notifyObservers();
+			try {
+				Thread.sleep(1000);
+			} catch (Exception e) {
+				System.out.print(e.getMessage());
+			}
 		}
 	}
 
