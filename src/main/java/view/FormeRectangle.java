@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Created by calvi on 10/05/2017.
  */
-public class Rectangle implements Forme {
+public class FormeRectangle implements Forme {
 
     public Polygon getPolygon(Tortue tortue) {
 
