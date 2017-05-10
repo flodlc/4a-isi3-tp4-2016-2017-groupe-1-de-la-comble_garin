@@ -33,6 +33,7 @@ public class ControllerSimpleLogo implements ActionListener {
         Tortue tortue = new Tortue(0,0, 1, new Rectangle(), 5);
         this.listTortues.add(tortue);
         this.simpleLogoView.addTortue(tortue);
+        this.currentTortue = tortue;
     }
 
     public void actionPerformed(ActionEvent actionEvent) {
