@@ -4,10 +4,8 @@ import model.Tortue;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
+import java.util.List;
 
 
 /**
@@ -15,68 +13,65 @@ import java.util.Observer;
  * Description :  Un exemple de programme graphique utilisant la celebre Tortue Logo
  * Copyright :    Copyright (c) 2000
  * Societe :      LIRMM
+ *
  * @author J. Ferber
  * @version 2.0
  */
 
 
+public class FeuilleDessinView extends JPanel implements Observer {
 
-public class FeuilleDessinView extends JPanel implements Observer{
-	private ArrayList<Tortue> tortues; // la liste des tortues enregistrees
+    private List<Tortue> tortues; // la liste des tortues enregistrees
+    private List<TortueView> tortueViews;
 
-	private TortueView tortueView;
-	private Tortue tortue;
+    public FeuilleDessinView() {
+        tortues = new ArrayList<Tortue>();
+        tortueViews = new ArrayList<TortueView>();
+    }
 
-	public FeuilleDessinView(Tortue tortue) {
+    public void feuilleDessinInit() {
+        setBackground(Color.white);
+        setSize(new Dimension(600, 400));
+        setPreferredSize(new Dimension(600, 400));
+    }
 
-		this.tortue = tortue;
-		this.tortueView = new TortueView(tortue);
+    public void addTortue(Tortue tortue) {
+        TortueView tortueView = new TortueView(tortue);
+        tortueViews.add(tortueView);
+    }
 
+    public void reset() {
+        for (Iterator it = tortues.iterator(); it.hasNext(); ) {
+            Tortue t = (Tortue) it.next();
+            t.reset();
+        }
+    }
 
-	//	tortues = new ArrayList<Tortue>();
-	}
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
 
-	public void addTortue(Tortue o) {
-		tortues.add(o);
-	}
+        Color c = g.getColor();
+        Dimension dim = getSize();
+        g.setColor(Color.white);
+        g.fillRect(0, 0, dim.width, dim.height);
+        g.setColor(c);
 
-	public void reset() {
-		for (Iterator it = tortues.iterator();it.hasNext();) {
-			Tortue t = (Tortue) it.next();
-			t.reset();
-		}
-	}
+        showTurtles(g);
+    }
 
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-
-		Color c = g.getColor();
-		
-		Dimension dim = getSize();
-		g.setColor(Color.white);
-		g.fillRect(0,0,dim.width, dim.height);
-		g.setColor(c);
-
-		showTurtles(g);
-	}
-	
-	public void showTurtles(Graphics g) {
-		for(Iterator it = tortues.iterator();it.hasNext();) {
-			Tortue t = (Tortue) it.next();
-			t.drawTurtle(g);
-		}
-	}
-
-
-	public void update(Observable o, Object arg) {
-		tortue.addObserver(this);
-	}
-
-	/*
-	GETTERS
-	 */
+    public void showTurtles(Graphics g) {
+        for (Iterator it = tortueViews.iterator(); it.hasNext();) {
+            TortueView tortueView = (TortueView) it.next();
+            Polygon polygon = tortueView.getDessinTortue();
+            g.fillPolygon(polygon);
+        }
+    }
 
 
-
-
+    public void update(Observable o, Object arg) {
+        Graphics graphics = getGraphics();
+        Dimension dim = getSize();
+        graphics.clearRect(0, 0, dim.width, dim.height);
+        paintComponent(getGraphics());
+    }
 }

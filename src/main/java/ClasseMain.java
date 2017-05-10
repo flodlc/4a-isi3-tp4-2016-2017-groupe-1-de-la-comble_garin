@@ -1,5 +1,4 @@
-import controller.Controller;
-import view.SimpleLogoView;
+import controller.ControllerSimpleLogo;
 
 import javax.swing.*;
 
@@ -13,7 +12,7 @@ public class ClasseMain {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable(){
             public void run(){
-                Controller controller = new Controller();
+                ControllerSimpleLogo controller = new ControllerSimpleLogo();
                 controller.getSimpleLogoView().setVisible(true);
             }
         });
