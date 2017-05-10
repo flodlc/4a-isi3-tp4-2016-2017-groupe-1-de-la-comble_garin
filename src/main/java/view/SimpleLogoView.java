@@ -134,12 +134,12 @@ public class SimpleLogoView extends JFrame implements ActionListener {
 
 		getContentPane().add(p2,"South");
 
-		feuille = new FeuilleDessinView(tortue); //500, 400);
-		feuille.setBackground(Color.white);
-		feuille.setSize(new Dimension(600,400));
-		feuille.setPreferredSize(new Dimension(600,400));
+		feuilleDessinView = new FeuilleDessinView(tortue); //500, 400);
+		feuilleDessinView.setBackground(Color.white);
+		feuilleDessinView.setSize(new Dimension(600,400));
+		feuilleDessinView.setPreferredSize(new Dimension(600,400));
 
-		getContentPane().add(feuille,"Center");
+		getContentPane().add(feuilleDessinView,"Center");
 		
 		// Creation de la tortue
 		Tortue tortue = new Tortue();
@@ -148,7 +148,7 @@ public class SimpleLogoView extends JFrame implements ActionListener {
 		tortue.setPosition(500/2, 400/2); 		
 		
 		courante = tortue;
-		feuille.addTortue(tortue);
+		feuilleDessinView.addTortue(tortue);
 
 		pack();
 		setVisible(true);
