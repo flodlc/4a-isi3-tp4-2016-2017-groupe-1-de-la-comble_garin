@@ -41,11 +41,11 @@ public class SimpleLogoView extends JFrame {
 		System.exit(0);
 	}
 
-	public SimpleLogoView(Tortue tortue, ControllerSimpleLogo controller) {
+	public SimpleLogoView(ControllerSimpleLogo controller) {
 		super("un logo tout simple");
 		this.feuilleDessinView = new FeuilleDessinView();
 		this.controller = controller;
-		logoInit(tortue);
+		logoInit();
 		
 		addWindowListener(new WindowAdapter() {
 		    @Override
@@ -60,7 +60,7 @@ public class SimpleLogoView extends JFrame {
 		feuilleDessinView.addTortue(tortue);
 	}
 
-	public void logoInit(Tortue tortue) {
+	public void logoInit() {
 		getContentPane().setLayout(new BorderLayout(10,10));
 
 		// Boutons
