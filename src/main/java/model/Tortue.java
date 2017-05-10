@@ -22,25 +22,7 @@ import java.util.Observable;
 
 public class Tortue extends Observable
 {
-/*
-	protected class Segment {
-		public Point ptStart, ptEnd;
-		public Color color;
-		
-		public Segment() {
-			ptStart = new Point(0,0);
-			ptEnd = new Point(0,0);
-		}
-		
-		public void drawSegment(Graphics graph) {
-			if (graph==null)
-				return;
 
-			graph.setColor(color);
-			graph.drawLine(ptStart.x, ptStart.y, ptEnd.x, ptEnd.y);
-		}	
-	}
-*/
 	protected static final int rp=10, rb=5; // Taille de la pointe et de la base de la fleche
 	protected static final double ratioDegRad = 0.0174533; // Rapport radians/degres (pour la conversion)
 
@@ -48,16 +30,18 @@ public class Tortue extends Observable
 	protected ArrayList<Segment> listSegments; // Trace de la tortue
 	*/
 	protected int x, y;	
-	protected int dir;	
-	protected boolean crayon; 
+	protected int dir;
 	protected int coul;
+	protected boolean estCourante;
 	
 	public void setColor(int n) {coul = n;}
 	public int getColor() {return coul;}
 
-	public Tortue() { 
-	//	listSegments = new ArrayList<Segment>();
-		reset();
+	public Tortue(int x, int y, int coul, boolean estCourante) {
+		this.x = x;
+		this.coul = coul;
+		this.y = y;
+		this.estCourante = estCourante;
 	}
 
 	public void reset() {
@@ -65,7 +49,6 @@ public class Tortue extends Observable
 		y = 0;
 		dir = -90;
 		coul = 0;
-		crayon = true;
 	//	listSegments.clear();
   	}
 
@@ -77,14 +60,7 @@ public class Tortue extends Observable
 	public void drawTurtle (Graphics graph) {
 		if (graph==null)
 			return;
-		
-		// Dessine les segments
-	/*
-			for(Iterator it = listSegments.iterator();it.hasNext();) {
-			Segment seg = (Segment) it.next();
-			seg.drawSegment(graph);
-		}
-*/
+
 		//Calcule les 3 coins du triangle a partir de
 		// la position de la tortue p
 		Point p = new Point(x,y);
@@ -184,6 +160,7 @@ public class Tortue extends Observable
 		for (int i=0;i<4;i++) {
 			avancer(100);
 			droite(90);
+			notify();
 		}
 	}
 
@@ -191,6 +168,7 @@ public class Tortue extends Observable
 		for (int j=0;j<a;j++) {
 			avancer(n);
 			droite(360/a);
+			notify();
 		}
 	}
 
@@ -200,6 +178,18 @@ public class Tortue extends Observable
 			avancer(n);
 			droite(360/a);
 			n = n+1;
+			notify();
 		}
+	}
+
+	/*
+	GETTERS
+	 */
+
+	public int getX(){
+		return x;
+	}
+	public int getY(){
+		return y;
 	}
 }

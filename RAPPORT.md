@@ -2,10 +2,14 @@
 
 **PRIEUR DE LA COMBLE Florian**
 
+**CALVI Alexis**
+
 # Rapport TP4
 
 ## Question 1
-![IMAGE](images/tp4.PNG "Lamba expression")
+![IMAGE](images/tp4.png)
+
+"Diagramme de classe initial"
 
 La classe SimpleLogo contient le main, qui va lancer une instance de celle ci.
 Cette classe instancie FeuilleDessin et Tortue.
@@ -20,13 +24,15 @@ Enfin, le main est dans la méthode SimpleLogo. Il faudrait plutot créer un lau
 application.
 
 ## Question 2
-*Rien à rédiger*
+![IMAGE](images/tp4_2.png)
+
+"Diagramme du code suivant le modèle MVC"
 
 ## Question 3
 *Rien à rédiger*
 
 ## Question 4
-*Rien à rédiger*
+![IMAGE](images/tp4_4.png)
 
 ## Question 5
 *Expliquer le code ajouté et représenter le patron de conception*
