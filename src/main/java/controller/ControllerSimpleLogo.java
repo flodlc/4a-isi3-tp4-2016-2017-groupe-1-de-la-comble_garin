@@ -72,9 +72,9 @@ public class ControllerSimpleLogo implements ActionListener {
             else if (actionCommand.equals("Proc3"))
                 currentTortue.spiral(50,40,6);
             else if (actionCommand.equals("Effacer"))
-                SimpleLogoView.effacer();
+                simpleLogoView.effacer();
             else if (actionCommand.equals("Quitter"))
-                SimpleLogoView.quitter();
+                simpleLogoView.quitter();
         }
     }
 }
