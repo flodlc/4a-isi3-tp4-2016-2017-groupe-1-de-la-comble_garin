@@ -1,5 +1,7 @@
 package model;
 
+import view.Forme;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -33,15 +35,24 @@ public class Tortue extends Observable
 	protected int dir;
 	protected int coul;
 	protected boolean estCourante;
+	public Forme forme;
+	public int taille;
 	
 	public void setColor(int n) {coul = n;}
 	public int getColor() {return coul;}
+	public int getTaille(){
+		return taille;
+	}
+	public Forme getForme(){
+		return this.forme;
+	}
 
-	public Tortue(int x, int y, int coul, boolean estCourante) {
+	public Tortue(int x, int y, int coul, Forme forme, int taille) {
 		this.x = x;
 		this.coul = coul;
 		this.y = y;
-		this.estCourante = estCourante;
+		this.forme = forme;
+		this.taille = taille;
 	}
 
 	public void reset() {
@@ -56,7 +67,9 @@ public class Tortue extends Observable
 		x = newX;
 		y = newY;
 	}
-	
+
+
+
 	public void drawTurtle (Graphics graph) {
 		if (graph==null)
 			return;
@@ -137,13 +150,6 @@ public class Tortue extends Observable
 		dir = (dir - ang) % 360;
 	}
 
-	public void baisserCrayon() {
-		crayon = true;
-	}
-
-	public void leverCrayon() {
-		crayon = false;
-	}
 
 	public void couleur(int n) {
 		coul = n % 12;

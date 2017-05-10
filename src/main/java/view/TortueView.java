@@ -2,7 +2,7 @@ package view;
 
 import model.Tortue;
 
-import javax.swing.*;
+import javafx.scene.shape.Polygon;
 import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
@@ -19,17 +19,23 @@ public class TortueView implements Observer{
     public TortueView(Tortue tortue){
         this.tortue = tortue;
         this.tortue.addObserver(this);
+
     }
 
 
     public void update(Observable o, Object arg) {
         this.setDessinTortue();
     }
+    public int getCouleur(){
+        return tortue.getColor();
+    }
 
     public Polygon getDessinTortue(){
         return dessinTortue;
     }
     public void setDessinTortue(){
+
+        dessinTortue = tortue.getForme().getPolygon(tortue);
 
     }
 }
