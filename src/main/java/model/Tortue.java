@@ -1,8 +1,9 @@
-// package logo;
+package model;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Observable;
 
 
 /*************************************************************************
@@ -19,9 +20,9 @@ import java.util.Iterator;
 **************************************************************************/
 
 
-public class Tortue
+public class Tortue extends Observable
 {
-
+/*
 	protected class Segment {
 		public Point ptStart, ptEnd;
 		public Color color;
@@ -39,12 +40,13 @@ public class Tortue
 			graph.drawLine(ptStart.x, ptStart.y, ptEnd.x, ptEnd.y);
 		}	
 	}
-
+*/
 	protected static final int rp=10, rb=5; // Taille de la pointe et de la base de la fleche
 	protected static final double ratioDegRad = 0.0174533; // Rapport radians/degres (pour la conversion)
-	
+
+	/*
 	protected ArrayList<Segment> listSegments; // Trace de la tortue
-	
+	*/
 	protected int x, y;	
 	protected int dir;	
 	protected boolean crayon; 
@@ -54,7 +56,7 @@ public class Tortue
 	public int getColor() {return coul;}
 
 	public Tortue() { 
-		listSegments = new ArrayList<Segment>();
+	//	listSegments = new ArrayList<Segment>();
 		reset();
 	}
 
@@ -64,7 +66,7 @@ public class Tortue
 		dir = -90;
 		coul = 0;
 		crayon = true;
-		listSegments.clear();
+	//	listSegments.clear();
   	}
 
 	public void setPosition(int newX, int newY) {
@@ -77,11 +79,12 @@ public class Tortue
 			return;
 		
 		// Dessine les segments
-		for(Iterator it = listSegments.iterator();it.hasNext();) {
+	/*
+			for(Iterator it = listSegments.iterator();it.hasNext();) {
 			Segment seg = (Segment) it.next();
 			seg.drawSegment(graph);
 		}
-
+*/
 		//Calcule les 3 coins du triangle a partir de
 		// la position de la tortue p
 		Point p = new Point(x,y);
@@ -133,7 +136,7 @@ public class Tortue
 	public void avancer(int dist) {
 		int newX = (int) Math.round(x+dist*Math.cos(ratioDegRad*dir));
 		int newY = (int) Math.round(y+dist*Math.sin(ratioDegRad*dir));
-		
+	/*
 		if (crayon==true) {
 			Segment seg = new Segment();
 			
@@ -145,7 +148,7 @@ public class Tortue
 	
 			listSegments.add(seg);
 		}
-
+*/
 		x = newX;
 		y = newY;
 	}
@@ -175,6 +178,7 @@ public class Tortue
 	}
 
 	/** quelques classiques */
+
 
 	public void carre() {
 		for (int i=0;i<4;i++) {

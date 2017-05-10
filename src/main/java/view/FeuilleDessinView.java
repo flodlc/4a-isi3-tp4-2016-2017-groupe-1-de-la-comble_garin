@@ -1,9 +1,14 @@
-// package logo;
+package view;
+
+import model.Tortue;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Observable;
+import java.util.Observer;
+
 
 /**
  * Titre :        Logo
@@ -14,11 +19,21 @@ import java.util.Iterator;
  * @version 2.0
  */
 
-public class FeuilleDessin extends JPanel {
+
+
+public class FeuilleDessinView extends JPanel implements Observer{
 	private ArrayList<Tortue> tortues; // la liste des tortues enregistrees
-	
-	public FeuilleDessin() {
-		tortues = new ArrayList<Tortue>();
+
+	private TortueView tortueView;
+	private Tortue tortue;
+
+	public FeuilleDessinView(Tortue tortue) {
+
+		this.tortue = tortue;
+		this.tortueView = new TortueView(tortue);
+
+
+	//	tortues = new ArrayList<Tortue>();
 	}
 
 	public void addTortue(Tortue o) {
@@ -51,4 +66,19 @@ public class FeuilleDessin extends JPanel {
 			t.drawTurtle(g);
 		}
 	}
+
+
+	public void update(Observable o, Object arg) {
+		tortue.addObserver(this);
+	}
+
+	/*
+	GETTERS
+	 */
+
+	public TortueView getTortueView() {
+		return tortueView;
+	}
+
+
 }
