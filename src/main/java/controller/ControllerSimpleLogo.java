@@ -30,13 +30,14 @@ public class ControllerSimpleLogo implements ActionListener {
     }
 
     private void createTortue() {
-        Tortue tortue = new Tortue(0,0, 1, new FormeRectangle(), 5);
+        Tortue tortue = new Tortue(200,200, 1, new FormeRectangle(), 20);
         this.listTortues.add(tortue);
         this.simpleLogoView.addTortue(tortue);
         this.currentTortue = tortue;
     }
 
     public void actionPerformed(ActionEvent actionEvent) {
+        System.out.println("event entendu");
         Object obj = actionEvent.getSource();
         String actionCommand = actionEvent.getActionCommand();
         if (obj instanceof JMenuItem) {
