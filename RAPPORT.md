@@ -26,13 +26,11 @@ application.
 
 "Diagramme du code suivant le modèle MVC"
 
-*Rien à rédiger*
-
 ## Question 3
 *Rien à rédiger*
 
 ## Question 4
-*Rien à rédiger*
+![IMAGE](images/tp4_4.png)
 
 ## Question 5
 *Expliquer le code ajouté et représenter le patron de conception*
