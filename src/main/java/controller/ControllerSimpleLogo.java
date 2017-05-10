@@ -3,8 +3,6 @@ package controller;
 import model.Tortue;
 import view.SimpleLogoView;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -30,7 +28,7 @@ public class ControllerSimpleLogo implements ActionListener {
     }
 
     private void createTortue() {
-        Tortue tortue = new Tortue(0,0, 1, new Rectangle(), 5);
+        Tortue tortue = new Tortue(0,0, 1, new FormeRectangle(), 5);
         this.listTortues.add(tortue);
         this.simpleLogoView.addTortue(tortue);
         this.currentTortue = tortue;
