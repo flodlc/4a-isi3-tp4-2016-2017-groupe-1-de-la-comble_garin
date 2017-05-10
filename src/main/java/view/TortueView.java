@@ -26,7 +26,7 @@ public class TortueView implements Observer{
         this.setDessinTortue();
     }
 
-    public Shape getDessinTortue(){
+    public Polygon getDessinTortue(){
         return dessinTortue;
     }
     public void setDessinTortue(){
