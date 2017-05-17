@@ -15,7 +15,7 @@ public class TortueView implements Observer{
     private int couleur = 0;
     Polygon dessinTortue = new Polygon();
 
-    public TortueView(Tortue tortue){
+    public TortueView(Tortue tortue, String forme){
         this.tortue = tortue;
         this.tortue.addObserver(this);
         setDessinTortue();
