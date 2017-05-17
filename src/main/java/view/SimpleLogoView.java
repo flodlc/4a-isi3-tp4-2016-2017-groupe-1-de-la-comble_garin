@@ -43,7 +43,7 @@ public class SimpleLogoView extends JFrame {
 
 	public SimpleLogoView(ControllerSimpleLogo controller) {
 		super("un logo tout simple");
-		this.feuilleDessinView = new FeuilleDessinView();
+		this.feuilleDessinView = new FeuilleDessinView(this);
 		this.controller = controller;
 		logoInit();
 		

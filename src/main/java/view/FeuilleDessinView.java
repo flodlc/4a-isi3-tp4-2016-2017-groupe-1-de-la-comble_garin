@@ -27,6 +27,7 @@ public class FeuilleDessinView extends JPanel implements Observer {
     public FeuilleDessinView(SimpleLogoView simpleLogoView) {
         feuilleDessinInit();
         this.simpleLogoView = simpleLogoView;
+        map = new HashMap<Tortue, TortueView>();
         addMouseListener(new TortueMouseListener(map, this));
     }
 
@@ -44,6 +45,10 @@ public class FeuilleDessinView extends JPanel implements Observer {
         tortue.addObserver(this);
         TortueView tortueView = new TortueView(tortue);
         map.put(tortue, tortueView);
+        Graphics graphics = getGraphics();
+        Dimension dim = getSize();
+        graphics.clearRect(0, 0, dim.width, dim.height);
+        paintComponent(getGraphics());
     }
 
     public void reset() {
@@ -66,7 +71,6 @@ public class FeuilleDessinView extends JPanel implements Observer {
     }
 
     public void showTurtles(Graphics g) {
-        map.clear();
         for (Map.Entry<Tortue, TortueView> entry : map.entrySet()) {
             TortueView tortueView = entry.getValue();
             g.setColor(getTortueColor(tortueView));

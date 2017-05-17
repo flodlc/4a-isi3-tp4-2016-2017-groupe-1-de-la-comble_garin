@@ -39,7 +39,7 @@ public class ControllerSimpleLogo implements ActionListener {
         this.currentTortue = tortue;
     }
 
-    private void setCurrentTortue(Tortue tortue) {
+    public void setCurrentTortue(Tortue tortue) {
         this.currentTortue = tortue;
     }
 
