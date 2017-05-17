@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class ControllerSimpleLogo implements ActionListener {
 
-    private List<Tortue> listTortues;
+    private ArrayList<Tortue> listTortues;
     private Tortue currentTortue;
     private SimpleLogoView simpleLogoView;
 
@@ -33,7 +33,7 @@ public class ControllerSimpleLogo implements ActionListener {
     }
 
     private void createTortue() {
-        Tortue tortue = new Tortue(200, 200, 0, new FormeRectangle(), 2);
+        Tortue tortue = new Tortue(200, 200, 0, new FormeRectangle(), 10, 10, 1);
         this.listTortues.add(tortue);
         this.simpleLogoView.addTortue(tortue);
         this.currentTortue = tortue;

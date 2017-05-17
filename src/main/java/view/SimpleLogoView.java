@@ -73,7 +73,7 @@ public class SimpleLogoView extends JFrame {
         addButton(toolBar, "Effacer", "Nouveau dessin", "/icons/index.png");
 
         toolBar.add(Box.createRigidArea(HGAP));
-        inputValue = new JTextField("45", 5);
+        inputValue = new JTextField("5", 5);
         toolBar.add(inputValue);
         addButton(toolBar, "Add", "Add", null);
         addButton(toolBar, "Avancer", "Avancer 50", null);
