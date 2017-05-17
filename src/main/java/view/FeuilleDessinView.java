@@ -73,8 +73,8 @@ public class FeuilleDessinView extends JPanel implements Observer {
     public void showTurtles(Graphics g) {
         for (Map.Entry<Tortue, TortueView> entry : map.entrySet()) {
             TortueView tortueView = entry.getValue();
-            g.setColor(getTortueColor(tortueView));
             Polygon polygon = tortueView.getDessinTortue();
+            g.setColor(getTortueColor(tortueView));
             g.fillPolygon(polygon);
         }
     }

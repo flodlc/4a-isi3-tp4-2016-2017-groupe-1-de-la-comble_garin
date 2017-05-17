@@ -18,6 +18,7 @@ public class TortueMouseListener extends MouseAdapter {
 
     public TortueMouseListener(Map<Tortue, TortueView> map, FeuilleDessinView feuilleDessinView) {
         this.map = map;
+        this.feuilleDessinView = feuilleDessinView;
     }
 
     public void mousePressed(MouseEvent e) {
