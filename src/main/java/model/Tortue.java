@@ -102,8 +102,6 @@ public class Tortue extends Observable
 		notifyObservers();
 	}
 
-
-
 	public void droite(int ang) {
 		dir = (dir + ang) % 360;
 	}

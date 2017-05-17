@@ -41,24 +41,28 @@ public class SimpleLogoView extends JFrame {
         System.exit(0);
     }
 
-    public SimpleLogoView(ControllerSimpleLogo controller) {
-        super("un logo tout simple");
-        this.feuilleDessinView = new FeuilleDessinView();
-        this.controller = controller;
-        logoInit();
+	public SimpleLogoView(ControllerSimpleLogo controller) {
+		super("un logo tout simple");
+		this.feuilleDessinView = new FeuilleDessinView(this);
+		this.controller = controller;
+		logoInit();
+		
+		addWindowListener(new WindowAdapter() {
+		    @Override
+		    public void windowClosing(WindowEvent arg0) {
+		        super.windowClosing(arg0);
+		        System.exit(0);
+		    }
+		});
+	}
 
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent arg0) {
-                super.windowClosing(arg0);
-                System.exit(0);
-            }
-        });
-    }
+	public void setCurrentTortue(Tortue tortue) {
+		controller.setCurrentTortue(tortue);
+	}
 
-    public void addTortue(Tortue tortue) {
-        feuilleDessinView.addTortue(tortue);
-    }
+	public void addTortue(Tortue tortue) {
+		feuilleDessinView.addTortue(tortue);
+	}
 
     public void logoInit() {
         getContentPane().setLayout(new BorderLayout(10, 10));
