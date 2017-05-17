@@ -13,13 +13,13 @@ public class TortueView implements Observer{
 
     private Tortue tortue;
     private int couleur = 0;
-    Polygon dessinTortue = new Polygon();
+    private Polygon dessinTortue;
 
     public TortueView(Tortue tortue){
         this.tortue = tortue;
         this.tortue.addObserver(this);
+        this.dessinTortue = tortue.getForme().getPolygon(tortue);
         setDessinTortue();
-        System.out.println("Vue Tortue cree");
     }
 
     public void update(Observable o, Object arg) {
@@ -31,7 +31,6 @@ public class TortueView implements Observer{
      */
 
     public void setDessinTortue(){
-        System.out.println("Le polygon a été modifié");
         dessinTortue = tortue.getForme().getPolygon(tortue);
 
     }

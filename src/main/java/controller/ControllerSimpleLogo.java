@@ -36,11 +36,14 @@ public class ControllerSimpleLogo implements ActionListener {
         Tortue tortue = new Tortue(200, 200, 0, new FormeRectangle(), 10, 10, 1);
         this.listTortues.add(tortue);
         this.simpleLogoView.addTortue(tortue);
-        this.currentTortue = tortue;
+        setCurrentTortue(tortue);
     }
 
     public void setCurrentTortue(Tortue tortue) {
+        if (this.currentTortue != null)
+            this.currentTortue.setCurrent(false);
         this.currentTortue = tortue;
+        this.currentTortue.setCurrent(true);
     }
 
     public void actionPerformed(ActionEvent actionEvent) {
@@ -49,7 +52,6 @@ public class ControllerSimpleLogo implements ActionListener {
         if (obj instanceof javax.swing.JButton) {
             // actions des boutons du haut
             if (actionCommand.equals("Avancer")) {
-                System.out.println("commande avancer");
                 try {
                     int v = Integer.parseInt(simpleLogoView.getInputValue());
                     currentTortue.avancer(this.listTortues);
@@ -61,7 +63,6 @@ public class ControllerSimpleLogo implements ActionListener {
                 System.out.println("Nouvelle tortue !");
                 this.createTortue();
             } else if (actionCommand.equals("Droite")) {
-                System.out.println("commande Droite");
                 try {
                     int v = Integer.parseInt(simpleLogoView.getInputValue());
                     currentTortue.droite(v);
@@ -69,7 +70,6 @@ public class ControllerSimpleLogo implements ActionListener {
                     System.err.println("Ce n'est pas un nombre : " + simpleLogoView.getInputValue());
                 }
             } else if (actionCommand.equals("Gauche")) {
-                System.out.println("commande Gauche");
                 try {
                     int v = Integer.parseInt(simpleLogoView.getInputValue());
                     currentTortue.gauche(v);
@@ -90,4 +90,5 @@ public class ControllerSimpleLogo implements ActionListener {
                 simpleLogoView.quitter();
         }
     }
+
 }

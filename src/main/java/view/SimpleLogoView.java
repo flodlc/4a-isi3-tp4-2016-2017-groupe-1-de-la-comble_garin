@@ -86,7 +86,7 @@ public class SimpleLogoView extends JFrame {
         addButton(toolBar, "Lever", "Lever Crayon", null);
         addButton(toolBar, "Baisser", "Baisser Crayon", null);
 
-        String[] colorStrings = {"noir", "bleu", "cyan", "gris fonce", "rouge",
+        String[] colorStrings = {"noir", "bleu", "cyan", "gris fonce",
                 "vert", "gris clair", "magenta", "orange",
                 "gris", "rose", "jaune"};
 

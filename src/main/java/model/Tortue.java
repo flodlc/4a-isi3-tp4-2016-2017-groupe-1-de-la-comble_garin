@@ -52,7 +52,6 @@ public class Tortue extends Observable {
         this.taille = taille;
         this.vitesse = vitesse;
         this.separation = separation;
-        System.out.println("Tortue crée");
     }
 
     public void reset() {
@@ -202,7 +201,7 @@ public class Tortue extends Observable {
     }
 
 	/*
-	SETTEURS
+    SETTEURS
 	 */
 
     public void setOrientation(int orientation) {
@@ -230,7 +229,8 @@ public class Tortue extends Observable {
     }
 
     public int getColor() {
-        return coul;
+        System.out.println("c : " + ((this.estCourante) ? 4 : coul));
+        return (this.estCourante) ? 4 : coul;
     }
 
     public int getTaille() {
@@ -247,6 +247,12 @@ public class Tortue extends Observable {
 
     public int getOrientation() {
         return this.dir;
+    }
+
+    public void setCurrent(boolean set) {
+        this.estCourante = set;
+        setChanged();
+        notifyObservers();
     }
 
 }
