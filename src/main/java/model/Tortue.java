@@ -37,16 +37,19 @@ public class Tortue extends Observable
 	protected boolean estCourante;
 	public Forme forme;
 	public int taille;
-	
+	public int vitesse;
+	public int separation;
 	public void setColor(int n) {coul = n;}
 
 
-	public Tortue(int x, int y, int coul, Forme forme, int taille) {
+	public Tortue(int x, int y, int coul, Forme forme, int taille, int vitesse, int separation) {
 		this.x = x;
 		this.coul = coul;
 		this.y = y;
 		this.forme = forme;
 		this.taille = taille;
+		this.vitesse = vitesse;
+		this.separation = separation;
 		System.out.println("Tortue crée");
 	}
 
@@ -82,28 +85,24 @@ public class Tortue extends Observable
 		}
 	}
 
-	public void avancer(int dist) {
-		System.out.println(this.countObservers());
-		int newX = (int) Math.round(x+dist*Math.cos(ratioDegRad*dir));
-		int newY = (int) Math.round(y+dist*Math.sin(ratioDegRad*dir));
-	/*
-		if (crayon==true) {
-			Segment seg = new Segment();
-			
-			seg.ptStart.x = x;
-			seg.ptStart.y = y;
-			seg.ptEnd.x = newX;
-			seg.ptEnd.y = newY;
-			seg.color = decodeColor(coul);
-	
-			listSegments.add(seg);
+	public void avancer(ArrayList<Tortue> listTortues) {
+		int newX = (int) Math.round(x+vitesse*Math.cos(ratioDegRad*dir));
+		int newY = (int) Math.round(y+vitesse*Math.sin(ratioDegRad*dir));
+		boolean positionOk = false;
+		while(!positionOk){
+			positionOk = checkPosition(newX, newY, listTortues, separation);
+			if(!positionOk){
+				newX = (int) Math.round(x+(vitesse-1)*Math.cos(ratioDegRad*dir));
+				newY = (int) Math.round(y+(vitesse-2)*Math.sin(ratioDegRad*dir));
+			}
 		}
-*/
 		x = newX;
 		y = newY;
 		setChanged();
 		notifyObservers();
 	}
+
+
 
 	public void droite(int ang) {
 		dir = (dir + ang) % 360;
@@ -170,6 +169,69 @@ public class Tortue extends Observable
 	}
 
 	/*
+	FLOCKING
+	 */
+
+	public void flocking(ArrayList<Tortue> listTortues, int separation){
+
+		listTortues = getTortuesInFront(listTortues);
+		this.setVitesse(getVitesseMoyenne(listTortues));
+		this.setOrientation(getOrientationMoyenne(listTortues));
+		this.avancer(listTortues);
+
+	}
+
+	public ArrayList<Tortue> getTortuesInFront(ArrayList<Tortue> listTortues){
+		//On elimine celles qui sont deriere
+
+		return listTortues;
+	}
+
+	public int getVitesseMoyenne(ArrayList<Tortue> listTortues){
+
+		int vitesseMoyenne = 0;
+		for(Tortue tortue : listTortues){
+			vitesseMoyenne += tortue.getVitesse();
+		}
+
+		return vitesseMoyenne/listTortues.size();
+	}
+	public int getOrientationMoyenne(ArrayList<Tortue> listTortues){
+		int orientationMoyenne =0;
+
+		for(Tortue tortue : listTortues){
+			orientationMoyenne += tortue.getOrientation();
+		}
+		return orientationMoyenne/listTortues.size();
+	}
+
+
+	//On regarde si une des tortues devant nous va se retrouver proche de nous
+	public boolean checkPosition(int x, int y, ArrayList<Tortue> listTortues, int separation){
+		boolean ok =true;
+		for(Tortue tortue : listTortues){
+			if(Math.abs(x-tortue.getX()) < separation && Math.abs(y-tortue.getY()) < separation){
+				ok =false;
+			}
+		}
+		return ok;
+	}
+
+	/*
+	SETTEURS
+	 */
+
+	public void setOrientation(int orientation){
+		this.dir = orientation;
+	}
+	public void setVitesse(int vitesse){
+		this.vitesse = vitesse;
+	}
+	public void setSeparation(int separation){
+		this.separation = separation;
+	}
+
+	/*
 	GETTERS
 	 */
 
@@ -186,4 +248,7 @@ public class Tortue extends Observable
 	public Forme getForme(){
 		return this.forme;
 	}
+	public int getVitesse(){ return this.vitesse;}
+	public int getOrientation(){return this.dir;}
+
 }
