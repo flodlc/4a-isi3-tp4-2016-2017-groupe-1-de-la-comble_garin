@@ -21,13 +21,13 @@ import java.util.List;
 
 public class FeuilleDessinView extends JPanel implements Observer {
 
-    private List<Tortue> tortues; // la liste des tortues enregistrees
-    private List<TortueView> tortueViews;
+    private Map<Tortue, TortueView> map;
+    private SimpleLogoView simpleLogoView;
 
-    public FeuilleDessinView() {
-        tortues = new ArrayList<Tortue>();
-        tortueViews = new ArrayList<TortueView>();
+    public FeuilleDessinView(SimpleLogoView simpleLogoView) {
         feuilleDessinInit();
+        this.simpleLogoView = simpleLogoView;
+        addMouseListener(new TortueMouseListener(map, this));
     }
 
     public void feuilleDessinInit() {
@@ -36,15 +36,19 @@ public class FeuilleDessinView extends JPanel implements Observer {
         setPreferredSize(new Dimension(600, 400));
     }
 
+    public void setCurrentTortue(Tortue tortue) {
+        simpleLogoView.setCurrentTortue(tortue);
+    }
+
     public void addTortue(Tortue tortue) {
         tortue.addObserver(this);
         TortueView tortueView = new TortueView(tortue);
-        tortueViews.add(tortueView);
+        map.put(tortue, tortueView);
     }
 
     public void reset() {
-        for (Iterator it = tortues.iterator(); it.hasNext(); ) {
-            Tortue t = (Tortue) it.next();
+        for (Map.Entry<Tortue, TortueView> entry : map.entrySet()) {
+            Tortue t = entry.getKey();
             t.reset();
         }
     }
@@ -62,8 +66,9 @@ public class FeuilleDessinView extends JPanel implements Observer {
     }
 
     public void showTurtles(Graphics g) {
-        for (Iterator it = tortueViews.iterator(); it.hasNext();) {
-            TortueView tortueView = (TortueView) it.next();
+        map.clear();
+        for (Map.Entry<Tortue, TortueView> entry : map.entrySet()) {
+            TortueView tortueView = entry.getValue();
             g.setColor(getTortueColor(tortueView));
             Polygon polygon = tortueView.getDessinTortue();
             g.fillPolygon(polygon);

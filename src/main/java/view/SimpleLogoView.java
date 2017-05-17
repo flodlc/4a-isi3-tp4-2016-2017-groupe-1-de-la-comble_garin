@@ -56,6 +56,10 @@ public class SimpleLogoView extends JFrame {
 		});
 	}
 
+	public void setCurrentTortue(Tortue tortue) {
+		controller.setCurrentTortue(tortue);
+	}
+
 	public void addTortue(Tortue tortue) {
 		feuilleDessinView.addTortue(tortue);
 	}
