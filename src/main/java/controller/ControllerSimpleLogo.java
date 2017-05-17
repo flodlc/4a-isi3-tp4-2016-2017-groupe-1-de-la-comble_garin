@@ -23,6 +23,9 @@ public class ControllerSimpleLogo implements ActionListener {
         this.simpleLogoView = new SimpleLogoView(this);
         this.listTortues = new ArrayList<Tortue>();
         this.createTortue();
+        this.createTortue();
+        this.createTortue();
+        this.createTortue();
     }
 
     public SimpleLogoView getSimpleLogoView() {
@@ -33,6 +36,10 @@ public class ControllerSimpleLogo implements ActionListener {
         Tortue tortue = new Tortue(200, 200, 1, new FormeRectangle(), 20);
         this.listTortues.add(tortue);
         this.simpleLogoView.addTortue(tortue);
+        this.currentTortue = tortue;
+    }
+
+    private void setCurrentTortue(Tortue tortue) {
         this.currentTortue = tortue;
     }
 
