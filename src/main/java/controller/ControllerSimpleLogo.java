@@ -33,7 +33,7 @@ public class ControllerSimpleLogo implements ActionListener {
     }
 
     private void createTortue() {
-        Tortue tortue = new Tortue(200, 200, 1, new FormeRectangle(), 20);
+        Tortue tortue = new Tortue(200, 200, 0, new FormeRectangle(), 2);
         this.listTortues.add(tortue);
         this.simpleLogoView.addTortue(tortue);
         this.currentTortue = tortue;
