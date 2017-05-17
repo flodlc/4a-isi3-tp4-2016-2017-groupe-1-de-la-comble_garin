@@ -52,7 +52,7 @@ public class ControllerSimpleLogo implements ActionListener {
                 System.out.println("commande avancer");
                 try {
                     int v = Integer.parseInt(simpleLogoView.getInputValue());
-                    currentTortue.avancer(v);
+                    currentTortue.avancer(this.listTortues);
                 } catch (NumberFormatException ex) {
                     System.err.println("ce n'est pas un nombre : " + simpleLogoView.getInputValue());
                 }
