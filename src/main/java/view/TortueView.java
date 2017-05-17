@@ -39,7 +39,6 @@ public class TortueView implements Observer{
      */
 
     public Polygon getDessinTortue(){
-        System.out.println("Dessin tortue envoyé");
         return dessinTortue;
 
     }

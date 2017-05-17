@@ -229,7 +229,6 @@ public class Tortue extends Observable {
     }
 
     public int getColor() {
-        System.out.println("c : " + ((this.estCourante) ? 4 : coul));
         return (this.estCourante) ? 4 : coul;
     }
 
