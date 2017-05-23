@@ -23,6 +23,9 @@ public class ControllerSimpleLogo implements ActionListener {
         this.simpleLogoView = new SimpleLogoView(this);
         this.listTortues = new ArrayList<Tortue>();
         this.createTortue();
+        this.createTortue();
+        this.createTortue();
+        this.createTortue();
     }
 
     public SimpleLogoView getSimpleLogoView() {
@@ -30,9 +33,13 @@ public class ControllerSimpleLogo implements ActionListener {
     }
 
     private void createTortue() {
-        Tortue tortue = new Tortue(200,200, 1, new FormeRectangle(), 20);
+        Tortue tortue = new Tortue(200, 200, 1, new FormeRectangle(), 20);
         this.listTortues.add(tortue);
         this.simpleLogoView.addTortue(tortue);
+        this.currentTortue = tortue;
+    }
+
+    public void setCurrentTortue(Tortue tortue) {
         this.currentTortue = tortue;
     }
 
@@ -50,6 +57,9 @@ public class ControllerSimpleLogo implements ActionListener {
                     System.err.println("ce n'est pas un nombre : " + simpleLogoView.getInputValue());
                 }
 
+            } else if (actionCommand.equals("Add")) {
+                System.out.println("Nouvelle tortue !");
+                this.createTortue();
             } else if (actionCommand.equals("Droite")) {
                 System.out.println("commande Droite");
                 try {
@@ -71,9 +81,9 @@ public class ControllerSimpleLogo implements ActionListener {
             else if (actionCommand.equals("Proc1"))
                 currentTortue.carre();
             else if (actionCommand.equals("Proc2"))
-                currentTortue.poly(60,8);
+                currentTortue.poly(60, 8);
             else if (actionCommand.equals("Proc3"))
-                currentTortue.spiral(50,40,6);
+                currentTortue.spiral(50, 40, 6);
             else if (actionCommand.equals("Effacer"))
                 simpleLogoView.effacer();
             else if (actionCommand.equals("Quitter"))
