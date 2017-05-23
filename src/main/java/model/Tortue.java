@@ -38,7 +38,7 @@ public class Tortue extends Observable {
 	public double taille;
 	public int vitesse; // distance parcourue a chaque ité
 	public int separation; // distance minimale a laisser entre chaque tortue
-	public int champDeVision = 180; // A changer eventuellement
+	public int champDeVision = 10; // A changer eventuellement
 	public double distance =50;
 
 
@@ -167,18 +167,14 @@ public class Tortue extends Observable {
 	//retourne la liste des tortues qui sont dans le champ de vision
 	public ArrayList<Tortue> getTortuesInFront(ArrayList<Tortue> listTortues){
 		//On elimine celles qui sont deriere
+        ArrayList<Tortue> list = new ArrayList<Tortue>();
 		for(Tortue tortue : listTortues){
-			if(!this.estADistance(tortue)){
-				listTortues.remove(tortue);
-			}
-			else{
-				if(!this.estDansChamp(tortue)){
-					listTortues.remove(tortue);
-				}
+			if(this.estADistance(tortue) && this.estDansChamp(tortue)){
+                list.add(tortue);
 			}
 		}
 
-        return listTortues;
+        return list;
     }
 
 	public boolean estADistance(Tortue tortue){
@@ -212,7 +208,7 @@ public class Tortue extends Observable {
             vitesseMoyenne += tortue.getVitesse();
         }
 
-		return vitesseMoyenne/listTortues.size();
+		return (listTortues.size() > 0)? vitesseMoyenne/listTortues.size() : 0;
 	}
 
 	//retourne l'orientation moyenne de la liste de tortue
@@ -222,7 +218,7 @@ public class Tortue extends Observable {
         for (Tortue tortue : listTortues) {
             orientationMoyenne += tortue.getOrientation();
         }
-        return orientationMoyenne / listTortues.size();
+        return (listTortues.size() > 0)? orientationMoyenne / listTortues.size() : 0;
     }
 
 
@@ -256,7 +252,7 @@ public class Tortue extends Observable {
 	public double getY(){
 		return y;
 	}
-	public int getColor() {return coul;}
+	public int getColor() {return (this.estCourante)? 4 : coul;}
 	public double getTaille(){
 		return taille;
 	}
@@ -271,4 +267,7 @@ public class Tortue extends Observable {
         notifyObservers();
     }
 
+    public boolean getEstCourante() {
+		return this.estCourante;
+	}
 }
