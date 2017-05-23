@@ -12,21 +12,21 @@ public class FormeRectangle implements Forme {
 
         Polygon polygon = new Polygon();
 
-        int x = tortue.getX();
-        int y = tortue.getY();
-        int taille = tortue.getTaille();
+        double x = tortue.getX();
+        double y = tortue.getY();
+        double taille = tortue.getTaille();
         //point haut gauche
-        Point p1 = new Point(x, y);
+        Point p1 = new Point((int)(x), (int)(y));
         polygon.addPoint(p1.x, p1.y);
         //point haut droite
-        Point p2 = new Point(x + taille, y);
+        Point p2 = new Point((int)(x + taille), (int)(y));
         polygon.addPoint(p2.x, p2.y);
         //point bas droite
-        Point p3 = new Point(x + taille, y - taille);
+        Point p3 = new Point((int)(x + taille), (int)(y - taille));
         polygon.addPoint(p3.x, p3.y);
 
         //point bas gauche
-        Point p4 = new Point(x, y - taille);
+        Point p4 = new Point((int)(x), (int)(y - taille));
         polygon.addPoint(p4.x, p4.y);
 
         return polygon;

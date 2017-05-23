@@ -43,7 +43,7 @@ public class FeuilleDessinView extends JPanel implements Observer {
 
     public void addTortue(Tortue tortue) {
         tortue.addObserver(this);
-        TortueView tortueView = new TortueView(tortue);
+        TortueView tortueView = new TortueView(tortue,"Rectangle");
         map.put(tortue, tortueView);
         Graphics graphics = getGraphics();
         Dimension dim = getSize();

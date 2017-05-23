@@ -14,16 +14,23 @@ public class TortueView implements Observer{
     private Tortue tortue;
     private int couleur = 0;
     private Polygon dessinTortue;
+    private Forme forme;
 
     public TortueView(Tortue tortue, String forme){
         this.tortue = tortue;
         this.tortue.addObserver(this);
-        this.dessinTortue = tortue.getForme().getPolygon(tortue);
+        setForme(forme);
+        this.dessinTortue = this.forme.getPolygon(tortue);
         setDessinTortue();
     }
 
     public void update(Observable o, Object arg) {
         this.setDessinTortue();
+    }
+    public void setForme(String forme){
+        if(forme == "Rectangle"){
+            this.forme = new FormeRectangle();
+        }
     }
 
     /*

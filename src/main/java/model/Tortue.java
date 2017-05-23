@@ -264,5 +264,10 @@ public class Tortue extends Observable {
 	}
 	public int getVitesse(){ return this.vitesse;}
 	public int getOrientation(){return this.dir;}
+    public void setCurrent(boolean set) {
+        this.estCourante = set;
+        setChanged();
+        notifyObservers();
+    }
 
 }

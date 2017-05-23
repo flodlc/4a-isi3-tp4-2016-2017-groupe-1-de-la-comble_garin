@@ -79,11 +79,11 @@ public class ControllerSimpleLogo implements ActionListener {
             }
             // actions des boutons du bas
             else if (actionCommand.equals("Proc1"))
-                currentTortue.carre();
+                currentTortue.carre(listTortues);
             else if (actionCommand.equals("Proc2"))
-                currentTortue.poly(60, 8);
+                currentTortue.poly(60, 8,listTortues);
             else if (actionCommand.equals("Proc3"))
-                currentTortue.spiral(50, 40, 6);
+                currentTortue.spiral(50, 40, 6,listTortues);
             else if (actionCommand.equals("Effacer"))
                 simpleLogoView.effacer();
             else if (actionCommand.equals("Quitter"))
