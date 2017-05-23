@@ -84,7 +84,7 @@ public class FeuilleDessinView extends JPanel implements Observer {
         switch (couleurNb) {
             case 0:
                 return (Color.black);
-            case 1:
+            case 1:é
                 return (Color.blue);
             case 2:
                 return (Color.cyan);
