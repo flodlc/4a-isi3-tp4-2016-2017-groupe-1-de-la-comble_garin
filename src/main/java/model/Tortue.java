@@ -160,6 +160,7 @@ public class Tortue extends Observable {
         this.setVitesse(getVitesseMoyenne(listTortues));
         this.setOrientation(getOrientationMoyenne(listTortues));
         this.avancer(listTortues);
+        System.out.println("flocking");
 
     }
 

@@ -55,6 +55,10 @@ public class ControllerSimpleLogo implements ActionListener {
                 try {
                     int v = Integer.parseInt(simpleLogoView.getInputValue());
                     currentTortue.avancer(this.listTortues);
+                    for(Tortue tortue : listTortues){
+                        tortue.flocking(listTortues, 1);
+                    }
+
                 } catch (NumberFormatException ex) {
                     System.err.println("ce n'est pas un nombre : " + simpleLogoView.getInputValue());
                 }
