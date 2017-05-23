@@ -64,6 +64,7 @@ public class Tortue extends Observable
 		y = newY;
 	}
 
+<<<<<<< HEAD
 	public void avancer(ArrayList<Tortue> listTortues) {
 		int newX = (int) Math.round(x+vitesse*Math.cos(ratioDegRad*dir));
 		int newY = (int) Math.round(y+vitesse*Math.sin(ratioDegRad*dir));
@@ -74,6 +75,24 @@ public class Tortue extends Observable
 				newX = (int) Math.round(x+(vitesse-1)*Math.cos(ratioDegRad*dir));
 				newY = (int) Math.round(y+(vitesse-1)*Math.sin(ratioDegRad*dir));
 			}
+=======
+
+	public void avancer(int dist) {
+		System.out.println(this.countObservers());
+		int newX = (int) Math.round(x+dist*Math.cos(ratioDegRad*dir));
+		int newY = (int) Math.round(y+dist*Math.sin(ratioDegRad*dir));
+	/*
+		if (crayon==true) {
+			Segment seg = new Segment();
+			
+			seg.ptStart.x = x;
+			seg.ptStart.y = y;
+			seg.ptEnd.x = newX;
+			seg.ptEnd.y = newY;
+			seg.color = decodeColor(coul);
+	
+			listSegments.add(seg);
+>>>>>>> d85b3ba3d9c145fc29d65b1b1cd7bdeae801c617
 		}
 		x = newX;
 		y = newY;
