@@ -6,6 +6,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Observable;
+import java.util.Random;
 
 
 /*************************************************************************
@@ -37,8 +38,8 @@ public class Tortue extends Observable {
     public double taille;
     public int vitesse; // distance parcourue a chaque ité
     public int separation; // distance minimale a laisser entre chaque tortue
-    public int champDeVision = 180; // A changer eventuellement
-    public double distance = 40;
+    public int champDeVision = 75; // A changer eventuellement
+    public double distance = 50;
     private static int SIZE_GAME = 700;
 
 
@@ -55,28 +56,28 @@ public class Tortue extends Observable {
     public void avancer() {
         int newX = (int) Math.round(x + vitesse * Math.cos(ratioDegRad * dir));
         int newY = (int) Math.round(y + vitesse * Math.sin(ratioDegRad * dir));
+
         //cas droite
         if (newX >= SIZE_GAME) {
             newX = 1;
         }
         //cas gauche
-        if (newX < 0) {
-            newX = SIZE_GAME - 1;
+        if (newX <= 0) {
+            newX = SIZE_GAME;
         }
         //cas bas
         if (newY >= SIZE_GAME) {
             newY = 1;
         }
         //cas haut
-        if (newY < 0) {
-            newY = SIZE_GAME - 1;
+        if (newY <= 0) {
+            newY = SIZE_GAME;
         }
         x = newX;
         y = newY;
         setChanged();
         notifyObservers();
     }
-
 
     public void droite(int ang) {
         this.dir = (this.dir + ang) % 360;
@@ -86,11 +87,6 @@ public class Tortue extends Observable {
         this.dir = (this.dir - ang) % 360;
     }
 
-
-    /**
-     * quelques classiques
-     */
-
 	/*
     FLOCKING
 	 */
@@ -99,7 +95,6 @@ public class Tortue extends Observable {
         this.setVitesse(getVitesseMoyenne(listTortues));
         this.setOrientation(getOrientationMoyenne(listTortues));
         this.avancer();
-
     }
 
     //retourne la liste des tortues qui sont dans le champ de vision
@@ -107,7 +102,7 @@ public class Tortue extends Observable {
         //On elimine celles qui sont deriere
         ArrayList<Tortue> list = new ArrayList<Tortue>();
         for (Tortue tortue : listTortues) {
-            if (this.estADistance(tortue) && this.estDansChamp(tortue) && tortue.getColor() == coul) {
+            if (tortue.getColor() == coul && this.estADistance(tortue) && this.estDansChamp(tortue)) {
                 list.add(tortue);
             }
         }
@@ -119,21 +114,21 @@ public class Tortue extends Observable {
     }
 
     public double getDistance(double x1, double y1, double x2, double y2) {
-        return Math.sqrt((double) (Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2)));
+        return Math.sqrt((Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2)));
     }
 
     public boolean estDansChamp(Tortue tortue) {
-        return Math.abs(getAngle(tortue)) < champDeVision / 2;
+        return Math.toDegrees(getAngle(tortue)) < champDeVision / 2;
     }
 
     private double getAngle(Tortue tortue) {
-        double tmpX = Math.round(x + Math.cos(ratioDegRad * dir));
-        double tmpY = (int) Math.round(y + Math.sin(ratioDegRad * dir));
+        double tmpX = Math.round(x + 10 * Math.cos(ratioDegRad * dir));
+        double tmpY = Math.round(y + 10 * Math.sin(ratioDegRad * dir));
         double a = getDistance(x, y, tortue.getX(), tortue.getY());
         double b = getDistance(x, y, tmpX, tmpY);
         double c = getDistance(tmpX, tmpY, tortue.getX(), tortue.getY());
-        double division = (Math.pow(c, 2) - Math.pow(a, 2) - Math.pow(b, 2)) / (2 * a * c);
-
+        //double division = (Math.pow(c, 2) - Math.pow(a, 2) - Math.pow(b, 2)) / (2 * a * c);
+        double division = (Math.pow(a, 2) + Math.pow(b, 2) - Math.pow(c, 2))/(2*a*b);
         return Math.acos(division);
     }
 
@@ -145,7 +140,8 @@ public class Tortue extends Observable {
             vitesseMoyenne += tortue.getVitesse();
         }
 
-        return (listTortues.size() > 0) ? vitesseMoyenne / listTortues.size() : 0;
+        return (listTortues.size() > 0) ? vitesseMoyenne / listTortues.size() : 10;
+        //return 5;
     }
 
     //retourne l'orientation moyenne de la liste de tortue
@@ -153,8 +149,9 @@ public class Tortue extends Observable {
         int orientationMoyenne = 0;
         for (Tortue tortue : listTortues) {
             orientationMoyenne += tortue.getOrientation();
+            //orientationMoyenne += getAngle(tortue);
         }
-        return (listTortues.size() > 0) ? orientationMoyenne / listTortues.size() : 0;
+        return (listTortues.size() > 0) ? orientationMoyenne / listTortues.size() : dir;
     }
 
     public void aleatoireMove(ArrayList<Tortue> listTortues) {

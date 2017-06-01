@@ -56,7 +56,6 @@ public class FeuilleDessinView extends JPanel {
         g.setColor(Color.white);
         g.fillRect(0, 0, dim.width, dim.height);
         g.setColor(c);
-        
         showTurtles(g);
     }
 

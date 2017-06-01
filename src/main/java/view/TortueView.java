@@ -30,11 +30,9 @@ public class TortueView extends JPanel implements Observer {
     }
 
     public void paintComponent(Graphics g) {
-        this.setSize(30, 30);
         super.paintComponent(g);
-        this.setBackground(Color.white);
+        this.setSize(30, 30);
         setOpaque(false);
-        this.setOpaque(false);
         g.setColor(getCouleur());
         AffineTransform at = new AffineTransform();
         at.rotate(Math.toRadians(tortue.getOrientation()), tortue.getTaille()/2, tortue.getTaille()/2);

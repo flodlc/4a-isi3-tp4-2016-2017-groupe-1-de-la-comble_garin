@@ -27,8 +27,8 @@ public abstract class ControllerMain {
         this.simpleLogoView = new SimpleLogoView(this);
         this.listTortues = new ArrayList<Tortue>();
         this.vitesse = 15;
-        for (int j = 0; j < 4; j++) {
-            for (int i = 0; i < 25; i++) {
+        for (int j = 0; j < 1; j++) {
+            for (int i = 0; i < 300; i++) {
                 this.createTortue(j);
             }
         }
@@ -47,7 +47,7 @@ public abstract class ControllerMain {
                 while (true) {
                     moveFlocking();
                     try {
-                        sleep(80);
+                        sleep(10);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -70,8 +70,8 @@ public abstract class ControllerMain {
 
     protected void createTortue(int coul) {
         Random rd = new Random();
-        int x = 300 + rd.nextInt(100);
-        int y = 300 + rd.nextInt(100);
+        int x = 200 + rd.nextInt(300);
+        int y = 200 + rd.nextInt(300);
         Tortue tortue = new Tortue(x, y, colors.get(coul), new FormeRectangle(), this.vitesse, 5, 1);
         this.listTortues.add(tortue);
         this.simpleLogoView.addTortue(tortue);
