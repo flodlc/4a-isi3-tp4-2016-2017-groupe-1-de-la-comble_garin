@@ -54,6 +54,10 @@ public class SimpleLogoView extends JFrame {
         addKeyListener(new SimpleLogoViewListener(this));
 	}
 
+	public void avancer() {
+        controller.avancer();
+    }
+
     public void tournerDroite() {
         controller.tournerDroite();
     }

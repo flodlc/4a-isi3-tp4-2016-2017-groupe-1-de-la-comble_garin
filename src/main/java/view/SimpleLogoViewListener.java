@@ -26,6 +26,9 @@ public class SimpleLogoViewListener implements KeyListener {
     private void findAction(int keyCode) {
         System.out.println(keyCode + "      " + pressedKeys.size());
         switch (keyCode) {
+            case 38 :
+                simpleLogoView.avancer();
+                break;
             case 39 :
                 simpleLogoView.tournerDroite();
                 break;
