@@ -23,13 +23,9 @@ public class TortueView extends JPanel implements Observer {
         this.tortue.addObserver(this);
         setForme(forme);
         this.dessinTortue = this.forme.getPolygon(tortue);
-        this.addMouseListener(new TortueMouseListener(this));
         this.feuilleDessinView = feuilleDessinView;
     }
 
-    public void setCurrentTortue(Tortue tortue) {
-        feuilleDessinView.setCurrentTortue(tortue);
-    }
 
 
     public void paintComponent(Graphics g){

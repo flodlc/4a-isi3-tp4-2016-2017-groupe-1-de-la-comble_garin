@@ -38,9 +38,7 @@ public class FeuilleDessinView extends JPanel {
         setPreferredSize(new Dimension(1000, 1000));
     }
 
-    public void setCurrentTortue(Tortue tortue) {
-        simpleLogoView.setCurrentTortue(tortue);
-    }
+
 
     public void addTortue(Tortue tortue) {
         TortueView tortueView = new TortueView(tortue,"Rectangle", this);
