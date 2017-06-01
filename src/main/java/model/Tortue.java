@@ -27,7 +27,7 @@ public class Tortue extends Observable {
 	*/
 	protected double x, y;
 	protected int dir;
-	protected int coul;
+	protected Color coul;
 	protected boolean estCourante;
 	public Forme forme;
 	public double taille;
@@ -37,7 +37,7 @@ public class Tortue extends Observable {
 	public double distance =40;
 
 
-	public Tortue(int x, int y, int coul, Forme forme, int taille, int vitesse, int separation) {
+	public Tortue(int x, int y, Color coul, Forme forme, int taille, int vitesse, int separation) {
 		this.x = x;
 		this.coul = coul;
 		this.y = y;
@@ -45,13 +45,6 @@ public class Tortue extends Observable {
 		this.taille = taille;
 		this.vitesse = vitesse;
 		this.separation = separation;
-	}
-
-	public void reset() {
-		setPosition(0,0);
-		dir = -90;
-		coul = 0;
-		//	listSegments.clear();
 	}
 
 	public void setPosition(double newX, double newY) {
@@ -85,14 +78,6 @@ public class Tortue extends Observable {
 		dir = (dir - ang) % 360;
 	}
 
-
-	public void couleur(int n) {
-		coul = n % 12;
-	}
-
-	public void couleurSuivante() {
-		couleur(coul + 1);
-	}
 
 	/**
 	 * quelques classiques
@@ -132,7 +117,6 @@ public class Tortue extends Observable {
 	public void spiral(int n, int k, int a, ArrayList<Tortue> listTortues) {
 		listTortues = getTortuesInFront(listTortues);
 		for (int i = 0; i < k; i++) {
-			couleur(coul+1);
 			avancer();
 			droite(360/a);
 			n = n+1;
@@ -245,7 +229,7 @@ public class Tortue extends Observable {
 	/*
     SETTEURS
 	 */
-	public void setColor(int n) {coul = n;}
+	public void setColor(Color c) {coul = c;}
 	public void setOrientation(int orientation){this.dir = orientation;}
 	public void setVitesse(int vitesse){this.vitesse = vitesse;}
 	public void setSeparation(int separation){this.separation = separation;}
@@ -261,8 +245,8 @@ public class Tortue extends Observable {
 	public double getY(){
 		return y;
 	}
-	public int getColor() {
-		if (estCourante) return 4;
+	public Color getColor() {
+		if (estCourante) return Color.RED;
 		return coul;
 	}
 	public double getTaille(){
