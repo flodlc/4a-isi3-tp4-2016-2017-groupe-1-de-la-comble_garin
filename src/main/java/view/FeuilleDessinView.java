@@ -34,13 +34,9 @@ public class FeuilleDessinView extends JPanel {
 
     public void feuilleDessinInit() {
         setBackground(Color.white);
-        setSize(new Dimension(1000, 1000));
-        setPreferredSize(new Dimension(1000, 1000));
+        setPreferredSize(new Dimension(700, 700));
     }
 
-    public void setCurrentTortue(Tortue tortue) {
-        simpleLogoView.setCurrentTortue(tortue);
-    }
 
     public void addTortue(Tortue tortue) {
         TortueView tortueView = new TortueView(tortue,"Rectangle", this);

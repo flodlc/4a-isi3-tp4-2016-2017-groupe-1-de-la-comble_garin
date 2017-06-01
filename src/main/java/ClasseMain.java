@@ -1,5 +1,4 @@
 import controller.ControllerHomePage;
-import controller.ControllerSimpleLogo;
 
 import javax.swing.*;
 

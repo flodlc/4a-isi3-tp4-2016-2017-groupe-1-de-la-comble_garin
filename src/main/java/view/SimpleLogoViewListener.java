@@ -27,13 +27,13 @@ public class SimpleLogoViewListener implements KeyListener {
         System.out.println(keyCode + "      " + pressedKeys.size());
         switch (keyCode) {
             case 38 :
-                simpleLogoView.avancer();
+//                simpleLogoView.avancer();
                 break;
             case 39 :
-                simpleLogoView.tournerDroite();
+//                simpleLogoView.tournerDroite();
                 break;
             case 37 :
-                simpleLogoView.tournerGauche();
+//                simpleLogoView.tournerGauche();
                 break;
         }
     }

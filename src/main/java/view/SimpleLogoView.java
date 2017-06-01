@@ -1,20 +1,13 @@
 package view;// package logo;
 
 
-import controller.ControllerSimpleLogo;
+import controller.ControllerMain;
 import model.Tortue;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.IOException;
 
 
 /*************************************************************************
@@ -35,16 +28,11 @@ import java.io.IOException;
 public class SimpleLogoView extends JFrame {
     public static final Dimension VGAP = new Dimension(1, 5);
     public static final Dimension HGAP = new Dimension(5, 1);
-
     private FeuilleDessinView feuilleDessinView;
-    private ControllerSimpleLogo controller;
+    private ControllerMain controller;
 
 
-    public void quitter() {
-        System.exit(0);
-    }
-
-	public SimpleLogoView(ControllerSimpleLogo controller) {
+	public SimpleLogoView(ControllerMain controller) {
 		super("TORTUE : mode aléatoire");
 		this.feuilleDessinView = new FeuilleDessinView(this);
 		this.controller = controller;
@@ -61,22 +49,6 @@ public class SimpleLogoView extends JFrame {
         addKeyListener(new SimpleLogoViewListener(this));
 	}
 
-	public void avancer() {
-        controller.avancer();
-    }
-
-    public void tournerDroite() {
-        controller.tournerDroite();
-    }
-
-    public void tournerGauche() {
-        controller.tournerGauche();
-    }
-
-	public void setCurrentTortue(Tortue tortue) {
-		controller.setCurrentTortue(tortue);
-	}
-
 	public void addTortue(Tortue tortue) {
 		feuilleDessinView.addTortue(tortue);
 	}
@@ -90,57 +62,10 @@ public class SimpleLogoView extends JFrame {
 
         // Deplacement de la tortue au centre de la feuille;
 
+        setResizable(false);
         pack();
         ImageIcon icon = new ImageIcon("images/favicon.png");
         this.setIconImage(icon.getImage());
         setVisible(true);
-    }
-
-
-    // efface tout et reinitialise la feuille
-    public void effacer() {
-		/*
-		feuille.reset();
-		feuille.repaint();
-
-		// Replace la tortue au centre
-		Dimension size = feuille.getSize();
-		courante.setPosition(size.width/2, size.height/2);*/
-    }
-
-    //utilitaires pour installer des boutons et des menus
-    public void addButton(JComponent p, String name, String tooltiptext, String imageName) {
-        JButton b;
-        if ((imageName == null) || (imageName.equals(""))) {
-            b = (JButton) p.add(new JButton(name));
-        } else {
-            java.net.URL u = this.getClass().getResource(imageName);
-            if (u != null) {
-                ImageIcon im = new ImageIcon(u);
-                b = (JButton) p.add(new JButton(im));
-            } else
-                b = (JButton) p.add(new JButton(name));
-            b.setActionCommand(name);
-        }
-
-        b.setToolTipText(tooltiptext);
-        b.setBorder(BorderFactory.createRaisedBevelBorder());
-        b.setMargin(new Insets(0, 0, 0, 0));
-        b.addActionListener(controller);
-    }
-
-    public void addMenuItem(JMenu m, String label, String command, int key) {
-        JMenuItem menuItem;
-        menuItem = new JMenuItem(label);
-        m.add(menuItem);
-
-        menuItem.setActionCommand(command);
-        menuItem.addActionListener(controller);
-        if (key > 0) {
-            if (key != KeyEvent.VK_DELETE)
-                menuItem.setAccelerator(KeyStroke.getKeyStroke(key, Event.CTRL_MASK, false));
-            else
-                menuItem.setAccelerator(KeyStroke.getKeyStroke(key, 0, false));
-        }
     }
 }

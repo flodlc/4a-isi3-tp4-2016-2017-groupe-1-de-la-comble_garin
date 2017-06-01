@@ -19,13 +19,18 @@ public class ControllerHomePage implements ActionListener {
 
     public void actionPerformed(ActionEvent actionEvent) {
         String actionCommand = actionEvent.getActionCommand();
+        this.homePage.close();
         if (actionCommand.equals("MODE ALEATOIRE")) {
-            System.out.println("in");
-            this.homePage.close();
-            System.out.println("close");
             SwingUtilities.invokeLater(new Runnable(){
                 public void run(){
-                    ControllerSimpleLogo controller = new ControllerSimpleLogo();
+                    ControllerMain controller = new ControllerAleatoire();
+                    controller.getSimpleLogoView().setVisible(true);
+                }
+            });
+        }else if (actionCommand.equals("MODE SURVIVOR")) {
+            SwingUtilities.invokeLater(new Runnable(){
+                public void run(){
+                    ControllerMain controller = new ControllerGame();
                     controller.getSimpleLogoView().setVisible(true);
                 }
             });

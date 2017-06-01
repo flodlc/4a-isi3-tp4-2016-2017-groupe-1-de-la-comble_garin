@@ -19,7 +19,4 @@ public class TortueMouseListener extends MouseAdapter {
         this.tortueView = tortueView;
     }
 
-    public void mousePressed(MouseEvent e) {
-        tortueView.setCurrentTortue(tortueView.getTortue());
-    }
 }

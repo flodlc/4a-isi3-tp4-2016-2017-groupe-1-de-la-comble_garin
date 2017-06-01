@@ -27,26 +27,16 @@ public class TortueView extends JPanel implements Observer {
         this.feuilleDessinView = feuilleDessinView;
     }
 
-    public void setCurrentTortue(Tortue tortue) {
-        feuilleDessinView.setCurrentTortue(tortue);
-    }
-
-
-    public void paintComponent(Graphics g){
-        try {
-            super.paintComponent(g);
-            this.setBackground(getCouleur());
-            g.fillPolygon(this.dessinTortue);
-            this.setBounds((int)this.tortue.getX(), (int)this.tortue.getY(), (int)this.tortue.getTaille(),
-                    (int)this.tortue.getTaille());
-        }
-        catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        this.setBackground(getCouleur());
+        g.fillPolygon(this.dessinTortue);
+        this.setBounds((int) this.tortue.getX(), (int) this.tortue.getY(), (int) this.tortue.getTaille(),
+                (int) this.tortue.getTaille());
     }
 
     public void update(Observable o, Object arg) {
-        this.paintComponent(this.getGraphics());
+        this.repaint();
     }
 
     public void setForme(String forme) {
@@ -56,9 +46,6 @@ public class TortueView extends JPanel implements Observer {
     /*
     GETTEURS
      */
-    public Polygon getDessinTortue() {
-        return dessinTortue;
-    }
 
     public Color getCouleur() {
         return this.tortue.getColor();
