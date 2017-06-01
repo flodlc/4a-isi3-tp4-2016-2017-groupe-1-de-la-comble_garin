@@ -99,10 +99,6 @@ public class ControllerSimpleLogo implements ActionListener {
     }
 
     public void avancer() {
-        for (Tortue tortue : listTortues) {
-            if (!tortue.getEstCourante())
-                tortue.setVitesse(0);
-        }
         currentTortue.avancer();
 
         for (Tortue tortue : listTortues) {
