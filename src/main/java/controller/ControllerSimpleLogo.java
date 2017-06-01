@@ -45,8 +45,9 @@ public class ControllerSimpleLogo implements ActionListener {
                 while(true) {
                     moveFlocking();
 
+
                     try {
-                        sleep(1000);
+                        sleep(50);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -69,8 +70,8 @@ public class ControllerSimpleLogo implements ActionListener {
 
     private void createTortue(int coul) {
         Random rd = new Random();
-        int x = 400+rd.nextInt(200);
-        int y = 400+rd.nextInt(200);
+        int x = 300 + rd.nextInt(100);
+        int y = 300 + rd.nextInt(100);
         Tortue tortue = new Tortue(x, y, coul, new FormeRectangle(), this.vitesse, 1, 1);
         this.listTortues.add(tortue);
         this.simpleLogoView.addTortue(tortue);

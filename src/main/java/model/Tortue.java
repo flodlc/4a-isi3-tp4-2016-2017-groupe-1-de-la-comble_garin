@@ -35,6 +35,7 @@ public class Tortue extends Observable {
 	public int separation; // distance minimale a laisser entre chaque tortue
 	public int champDeVision = 180; // A changer eventuellement
 	public double distance =40;
+	private static int SIZE_GAME = 500;
 
 
 	public Tortue(int x, int y, int coul, Forme forme, int taille, int vitesse, int separation) {
@@ -49,7 +50,7 @@ public class Tortue extends Observable {
 
 	public void reset() {
 		setPosition(0,0);
-		dir = -90;
+		dir = 0;
 		coul = 0;
 		//	listSegments.clear();
 	}
@@ -62,14 +63,22 @@ public class Tortue extends Observable {
 	public void avancer() {
 		int newX = (int) Math.round(x + vitesse * Math.cos(ratioDegRad * dir));
 		int newY = (int) Math.round(y + vitesse * Math.sin(ratioDegRad * dir));
-		boolean positionOk = false;
-		/*while (!positionOk) {
-			positionOk = checkPosition(newX, newY, listTortues, separation);
-			if (!positionOk) {
-				newX = (int) Math.round(x + (vitesse - 1) * Math.cos(ratioDegRad * dir));
-				newY = (int) Math.round(y + (vitesse - 2) * Math.sin(ratioDegRad * dir));
-			}
-		}*/
+		//cas droite
+		if(newX >= SIZE_GAME){
+			newX = 1;
+		}
+		//cas gauche
+		if(newX < 0){
+			newX = SIZE_GAME-1;
+		}
+		//cas bas
+		if(newY >= SIZE_GAME){
+			newY = 1;
+		}
+		//cas haut
+		if(newY < 0){
+			newY = SIZE_GAME-1;
+		}
 		x = newX;
 		y = newY;
 		setChanged();
@@ -164,7 +173,7 @@ public class Tortue extends Observable {
 		//On elimine celles qui sont deriere
 		ArrayList<Tortue> list = new ArrayList<Tortue>();
 		for(Tortue tortue : listTortues){
-			if(this.estADistance(tortue) && this.estDansChamp(tortue) ){
+			if(this.estADistance(tortue) && this.estDansChamp(tortue) && tortue.getColor() == coul){
 				list.add(tortue);
 			}
 		}
@@ -228,15 +237,8 @@ public class Tortue extends Observable {
 		return ok;
 	}
 	public void aleatoireMove(ArrayList<Tortue> listTortues){
-		int alea = (int)(Math.random() * 3);
-		int angle = (int)(Math.random() * 180);
-
-		if(alea == 1){
-			this.gauche(angle);
-		}
-		if(alea == 2){
-			this.droite(angle);
-		}
+		int angle = (int)(Math.random() * 360);
+		this.setOrientation(angle % 360);
 		avancer();
 
 
