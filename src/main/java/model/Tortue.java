@@ -33,8 +33,8 @@ public class Tortue extends Observable {
 	public double taille;
 	public int vitesse; // distance parcourue a chaque ité
 	public int separation; // distance minimale a laisser entre chaque tortue
-	public int champDeVision = 10; // A changer eventuellement
-	public double distance =50;
+	public int champDeVision = 180; // A changer eventuellement
+	public double distance =40;
 
 
 	public Tortue(int x, int y, int coul, Forme forme, int taille, int vitesse, int separation) {
@@ -59,22 +59,23 @@ public class Tortue extends Observable {
 		y = newY;
 	}
 
-	public void avancer(ArrayList<Tortue> listTortues) {
+	public void avancer() {
 		int newX = (int) Math.round(x + vitesse * Math.cos(ratioDegRad * dir));
 		int newY = (int) Math.round(y + vitesse * Math.sin(ratioDegRad * dir));
 		boolean positionOk = false;
-		while (!positionOk) {
+		/*while (!positionOk) {
 			positionOk = checkPosition(newX, newY, listTortues, separation);
 			if (!positionOk) {
 				newX = (int) Math.round(x + (vitesse - 1) * Math.cos(ratioDegRad * dir));
 				newY = (int) Math.round(y + (vitesse - 2) * Math.sin(ratioDegRad * dir));
 			}
-		}
+		}*/
 		x = newX;
 		y = newY;
 		setChanged();
 		notifyObservers();
 	}
+
 
 	public void droite(int ang) {
 		dir = (dir + ang) % 360;
@@ -101,7 +102,7 @@ public class Tortue extends Observable {
 	public void carre(ArrayList<Tortue> listTortues) {
 		listTortues = getTortuesInFront(listTortues);
 		for (int i=0;i<4;i++) {
-			avancer(listTortues);
+			avancer();
 			droite(90);
 			setChanged();
 			notifyObservers();
@@ -116,7 +117,7 @@ public class Tortue extends Observable {
 	public void poly(int n, int a, ArrayList<Tortue> listTortues) {
 		listTortues = getTortuesInFront(listTortues);
 		for (int j=0;j<a;j++) {
-			avancer(listTortues);
+			avancer();
 			droite(360/a);
 			setChanged();
 			notifyObservers();
@@ -132,7 +133,7 @@ public class Tortue extends Observable {
 		listTortues = getTortuesInFront(listTortues);
 		for (int i = 0; i < k; i++) {
 			couleur(coul+1);
-			avancer(listTortues);
+			avancer();
 			droite(360/a);
 			n = n+1;
 			setChanged();
@@ -154,8 +155,7 @@ public class Tortue extends Observable {
 		listTortues = getTortuesInFront(listTortues);
 		this.setVitesse(getVitesseMoyenne(listTortues));
 		this.setOrientation(getOrientationMoyenne(listTortues));
-		this.avancer(listTortues);
-		System.out.println("flocking");
+		this.avancer();
 
 	}
 
@@ -164,7 +164,7 @@ public class Tortue extends Observable {
 		//On elimine celles qui sont deriere
 		ArrayList<Tortue> list = new ArrayList<Tortue>();
 		for(Tortue tortue : listTortues){
-			if(this.estADistance(tortue) && this.estDansChamp(tortue)){
+			if(this.estADistance(tortue) && this.estDansChamp(tortue) ){
 				list.add(tortue);
 			}
 		}
@@ -226,6 +226,20 @@ public class Tortue extends Observable {
 			}
 		}
 		return ok;
+	}
+	public void aleatoireMove(ArrayList<Tortue> listTortues){
+		int alea = (int)(Math.random() * 3);
+		int angle = (int)(Math.random() * 180);
+
+		if(alea == 1){
+			this.gauche(angle);
+		}
+		if(alea == 2){
+			this.droite(angle);
+		}
+		avancer();
+
+
 	}
 
 	/*
