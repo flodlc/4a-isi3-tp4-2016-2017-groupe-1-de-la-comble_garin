@@ -26,7 +26,7 @@ public abstract class ControllerMain {
         this.colors.add(Color.YELLOW);
         this.simpleLogoView = new SimpleLogoView(this);
         this.listTortues = new ArrayList<Tortue>();
-        this.vitesse = 10;
+        this.vitesse = 15;
         for (int j = 0; j < 4; j++) {
             for (int i = 0; i < 25; i++) {
                 this.createTortue(j);

@@ -1,9 +1,11 @@
 package view;
 
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import model.Tortue;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -28,11 +30,17 @@ public class TortueView extends JPanel implements Observer {
     }
 
     public void paintComponent(Graphics g) {
+        this.setSize(30, 30);
         super.paintComponent(g);
-        this.setBackground(getCouleur());
-        g.fillPolygon(this.dessinTortue);
-        this.setBounds((int) this.tortue.getX(), (int) this.tortue.getY(), (int) this.tortue.getTaille(),
-                (int) this.tortue.getTaille());
+        this.setBackground(Color.white);
+        setOpaque(false);
+        this.setOpaque(false);
+        g.setColor(getCouleur());
+        AffineTransform at = new AffineTransform();
+        at.rotate(Math.toRadians(tortue.getOrientation()), tortue.getTaille()/2, tortue.getTaille()/2);
+        ((Graphics2D)g).rotate(Math.toRadians(tortue.getOrientation()), tortue.getTaille()/2, tortue.getTaille()/2);
+        g.fillPolygon(dessinTortue);
+        this.setLocation((int) this.tortue.getX(), (int) this.tortue.getY());
     }
 
     public void update(Observable o, Object arg) {
@@ -40,7 +48,7 @@ public class TortueView extends JPanel implements Observer {
     }
 
     public void setForme(String forme) {
-        if (forme.equals("Rectangle")) this.forme = new FormeRectangle();
+        if (forme.equals("Rectangle")) this.forme = new FormeTriangle();
     }
 
     /*
