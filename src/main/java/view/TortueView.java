@@ -35,12 +35,13 @@ public class TortueView extends JPanel implements Observer {
     public void paintComponent(Graphics g){
         try {
             super.paintComponent(g);
-            g.fillPolygon(this.dessinTortue);
             this.setBackground(getCouleur());
-            this.setBounds((int) this.tortue.getX(), (int) this.tortue.getY(), (int) this.tortue.getTaille(),
-                    (int) this.tortue.getTaille());
-        } catch (Exception e) {
-
+            g.fillPolygon(this.dessinTortue);
+            this.setBounds((int)this.tortue.getX(), (int)this.tortue.getY(), (int)this.tortue.getTaille(),
+                    (int)this.tortue.getTaille());
+        }
+        catch (Exception e) {
+            System.err.println(e.getMessage());
         }
     }
 
@@ -60,7 +61,7 @@ public class TortueView extends JPanel implements Observer {
     }
 
     public Color getCouleur() {
-        return Color.RED;
+        return this.tortue.getColor();
     }
 
     public Tortue getTortue() {

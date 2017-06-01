@@ -51,12 +51,6 @@ public class FeuilleDessinView extends JPanel {
         paintComponent(getGraphics());
     }
 
-    public void reset() {
-        for (Map.Entry<Tortue, TortueView> entry : map.entrySet()) {
-            Tortue t = entry.getKey();
-            t.reset();
-        }
-    }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -66,7 +60,7 @@ public class FeuilleDessinView extends JPanel {
         g.setColor(Color.white);
         g.fillRect(0, 0, dim.width, dim.height);
         g.setColor(c);
-
+        
         showTurtles(g);
     }
 

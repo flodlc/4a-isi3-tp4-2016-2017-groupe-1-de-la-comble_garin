@@ -6,6 +6,7 @@ import view.SimpleLogoView;
 
 import javax.swing.*;
 import javax.swing.Timer;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
@@ -21,8 +22,14 @@ public class ControllerSimpleLogo implements ActionListener {
     private Tortue currentTortue;
     private SimpleLogoView simpleLogoView;
     private int vitesse;
+    private ArrayList<Color> colors;
 
     public ControllerSimpleLogo() {
+        this.colors = new ArrayList<Color>();
+        this.colors.add(Color.BLUE);
+        this.colors.add(Color.BLACK);
+        this.colors.add(Color.GREEN);
+        this.colors.add(Color.YELLOW);
         this.simpleLogoView = new SimpleLogoView(this);
         this.listTortues = new ArrayList<Tortue>();
         this.vitesse = 10;
@@ -39,6 +46,7 @@ public class ControllerSimpleLogo implements ActionListener {
         startFlocking();
 
 
+
     }
 
 
@@ -49,7 +57,7 @@ public class ControllerSimpleLogo implements ActionListener {
                     moveFlocking();
 
                     try {
-                        sleep(1000);
+                        sleep(80);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -65,6 +73,7 @@ public class ControllerSimpleLogo implements ActionListener {
                 tortue.flocking(listTortues, 1);
             }
         }
+
     }
 
     public SimpleLogoView getSimpleLogoView() {
@@ -73,11 +82,12 @@ public class ControllerSimpleLogo implements ActionListener {
 
     private void createTortue(int coul) {
         Random rd = new Random();
-        int x = 400 + rd.nextInt(200);
-        int y = 400 + rd.nextInt(200);
-        Tortue tortue = new Tortue(x, y, coul, new FormeRectangle(), this.vitesse, 1, 1);
+        int x = 400+rd.nextInt(200);
+        int y = 400+rd.nextInt(200);
+        Tortue tortue = new Tortue(x, y, this.colors.get(coul), new FormeRectangle(), this.vitesse, 1, 1);
         this.listTortues.add(tortue);
         this.simpleLogoView.addTortue(tortue);
+        setCurrentTortue(tortue);
     }
 
     public void setCurrentTortue(Tortue tortue) {
