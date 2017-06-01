@@ -252,7 +252,10 @@ public class Tortue extends Observable {
 	public double getY(){
 		return y;
 	}
-	public int getColor() {return (this.estCourante)? 4 : coul;}
+	public int getColor() {
+		if (estCourante) return 4;
+		return coul;
+	}
 	public double getTaille(){
 		return taille;
 	}
