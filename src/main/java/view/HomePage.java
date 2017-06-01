@@ -16,7 +16,7 @@ public class HomePage extends JFrame {
 
     public HomePage(ControllerHomePage controllerHomePage) {
         this.controllerHomePage = controllerHomePage;
-        this.setTitle("Tortue : Home Page");
+        this.setTitle("TORTUE : Home Page");
         this.setSize(300, 300);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);

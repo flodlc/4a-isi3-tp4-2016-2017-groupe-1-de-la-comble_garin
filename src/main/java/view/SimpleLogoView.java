@@ -42,7 +42,7 @@ public class SimpleLogoView extends JFrame {
     }
 
 	public SimpleLogoView(ControllerSimpleLogo controller) {
-		super("un logo tout simple");
+		super("TORTUE : mode aléatoire");
 		this.feuilleDessinView = new FeuilleDessinView(this);
 		this.controller = controller;
 		logoInit();
@@ -67,89 +67,15 @@ public class SimpleLogoView extends JFrame {
     public void logoInit() {
         getContentPane().setLayout(new BorderLayout(10, 10));
 
-        // Boutons
-        JToolBar toolBar = new JToolBar();
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.add(toolBar);
-
-        getContentPane().add(buttonPanel, "North");
-
-        addButton(toolBar, "Effacer", "Nouveau dessin", "/icons/index.png");
-
-        toolBar.add(Box.createRigidArea(HGAP));
-        inputValue = new JTextField("5", 5);
-        toolBar.add(inputValue);
-        addButton(toolBar, "Add", "Add", null);
-        addButton(toolBar, "Avancer", "Avancer 50", null);
-        addButton(toolBar, "Droite", "Droite 45", null);
-        addButton(toolBar, "Gauche", "Gauche 45", null);
-        addButton(toolBar, "Lever", "Lever Crayon", null);
-        addButton(toolBar, "Baisser", "Baisser Crayon", null);
-
-        String[] colorStrings = {"noir", "bleu", "cyan", "gris fonce",
-                "vert", "gris clair", "magenta", "orange",
-                "gris", "rose", "jaune"};
-
-        // Create the combo box
-        toolBar.add(Box.createRigidArea(HGAP));
-        JLabel colorLabel = new JLabel("   Couleur: ");
-        toolBar.add(colorLabel);
-        JComboBox colorList = new JComboBox(colorStrings);
-        toolBar.add(colorList);
-
-        colorList.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                JComboBox cb = (JComboBox) e.getSource();
-                int n = cb.getSelectedIndex();
-            }
-        });
-
-
-        // Menus
-        JMenuBar menubar = new JMenuBar();
-        setJMenuBar(menubar);    // on installe le menu bar
-        JMenu menuFile = new JMenu("File"); // on installe le premier menu
-        menubar.add(menuFile);
-
-        addMenuItem(menuFile, "Effacer", "Effacer", KeyEvent.VK_N);
-        addMenuItem(menuFile, "Quitter", "Quitter", KeyEvent.VK_Q);
-
-        JMenu menuCommandes = new JMenu("Commandes"); // on installe le premier menu
-        menubar.add(menuCommandes);
-        addMenuItem(menuCommandes, "Add tortue", "add", -1);
-        addMenuItem(menuCommandes, "Avancer", "Avancer", -1);
-        addMenuItem(menuCommandes, "Droite", "Droite", -1);
-        addMenuItem(menuCommandes, "Gauche", "Gauche", -1);
-        addMenuItem(menuCommandes, "Lever Crayon", "Lever", -1);
-        addMenuItem(menuCommandes, "Baisser Crayon", "Baisser", -1);
-
-        JMenu menuHelp = new JMenu("Aide"); // on installe le premier menu
-        menubar.add(menuHelp);
-        addMenuItem(menuHelp, "Aide", "Help", -1);
-        addMenuItem(menuHelp, "A propos", "About", -1);
-
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-        // les boutons du bas
-        JPanel p2 = new JPanel(new GridLayout());
-        JButton b20 = new JButton("Proc1");
-        p2.add(b20);
-        b20.addActionListener(controller);
-        JButton b21 = new JButton("Proc2");
-        p2.add(b21);
-        b21.addActionListener(controller);
-        JButton b22 = new JButton("Proc3");
-        p2.add(b22);
-        b22.addActionListener(controller);
-
-
-        getContentPane().add(p2, "South");
 
         getContentPane().add(feuilleDessinView, "Center");
 
         // Deplacement de la tortue au centre de la feuille;
 
         pack();
+        ImageIcon icon = new ImageIcon("images/favicon.png");
+        this.setIconImage(icon.getImage());
         setVisible(true);
     }
 

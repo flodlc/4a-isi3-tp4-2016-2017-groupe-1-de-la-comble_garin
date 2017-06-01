@@ -24,7 +24,7 @@ public class HomePagePanel extends JPanel {
         title.add(positionLabel);
         title.setBackground(new Color(0, 61, 79));
         this.add(title, BorderLayout.NORTH);
-        this.add(this.createButton("MODE MANUEL"), BorderLayout.EAST);
+        this.add(this.createButton("MODE ALEATOIRE"), BorderLayout.EAST);
         this.add(this.createButton("MODE SURVIVOR"), BorderLayout.WEST);
     }
 

@@ -12,8 +12,8 @@ public class FormeRectangle implements Forme {
 
         Polygon polygon = new Polygon();
 
-        double x = tortue.getX();
-        double y = tortue.getY();
+        double x = 0;
+        double y = 0;
         double taille = tortue.getTaille();
         //point haut gauche
         Point p1 = new Point((int)(x), (int)(y));

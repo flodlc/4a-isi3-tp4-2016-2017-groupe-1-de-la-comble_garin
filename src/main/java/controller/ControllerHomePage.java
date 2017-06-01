@@ -19,7 +19,7 @@ public class ControllerHomePage implements ActionListener {
 
     public void actionPerformed(ActionEvent actionEvent) {
         String actionCommand = actionEvent.getActionCommand();
-        if (actionCommand.equals("MODE MANUEL")) {
+        if (actionCommand.equals("MODE ALEATOIRE")) {
             System.out.println("in");
             this.homePage.close();
             System.out.println("close");

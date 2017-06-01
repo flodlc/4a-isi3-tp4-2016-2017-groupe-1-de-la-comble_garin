@@ -19,7 +19,7 @@ import java.util.List;
  */
 
 
-public class FeuilleDessinView extends JPanel implements Observer {
+public class FeuilleDessinView extends JPanel {
 
     private Map<Tortue, TortueView> map;
     private SimpleLogoView simpleLogoView;
@@ -42,7 +42,6 @@ public class FeuilleDessinView extends JPanel implements Observer {
     }
 
     public void addTortue(Tortue tortue) {
-        tortue.addObserver(this);
         TortueView tortueView = new TortueView(tortue,"Rectangle");
         map.put(tortue, tortueView);
         Graphics graphics = getGraphics();
@@ -73,49 +72,14 @@ public class FeuilleDessinView extends JPanel implements Observer {
     public void showTurtles(Graphics g) {
         for (Map.Entry<Tortue, TortueView> entry : map.entrySet()) {
             TortueView tortueView = entry.getValue();
-            Polygon polygon = tortueView.getDessinTortue();
-            g.setColor(getTortueColor(tortueView));
-            g.fillPolygon(polygon);
+            this.add(tortueView);
         }
     }
 
-    private Color getTortueColor(TortueView tortueView) {
-        int couleurNb = tortueView.getCouleur();
-        switch (couleurNb) {
-            case 0:
-                return (Color.black);
-            case 1:
-                return (Color.blue);
-            case 2:
-                return (Color.cyan);
-            case 3:
-                return (Color.darkGray);
-            case 4:
-                return (Color.red);
-            case 5:
-                return (Color.green);
-            case 6:
-                return (Color.lightGray);
-            case 7:
-                return (Color.magenta);
-            case 8:
-                return (Color.orange);
-            case 9:
-                return (Color.gray);
-            case 10:
-                return (Color.pink);
-            case 11:
-                return (Color.yellow);
-            default:
-                return (Color.black);
-        }
-    }
-
-
-    public void update(Observable o, Object arg) {
+/*    public void update(Observable o, Object arg) {
         Graphics graphics = getGraphics();
         Dimension dim = getSize();
         graphics.clearRect(0, 0, dim.width, dim.height);
         paintComponent(getGraphics());
-    }
+    }*/
 }
