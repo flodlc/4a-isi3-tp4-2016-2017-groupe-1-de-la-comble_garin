@@ -9,23 +9,18 @@ import java.util.Observable;
 
 
 /*************************************************************************
-
  Un petit Logo minimal qui devra etre ameliore par la suite
-
  Source originale : J. Ferber - 1999-2001
-
  Cours de DESS TNI - Montpellier II
-
  @version 2.0
  @date 25/09/2001
-
  **************************************************************************/
 
 
 public class Tortue extends Observable {
 
-    protected static final int rp = 10, rb = 5; // Taille de la pointe et de la base de la fleche
-    protected static final double ratioDegRad = 0.0174533; // Rapport radians/degres (pour la conversion)
+	protected static final int rp = 10, rb = 5; // Taille de la pointe et de la base de la fleche
+	protected static final double ratioDegRad = 0.0174533; // Rapport radians/degres (pour la conversion)
 
 	/*
 	protected ArrayList<Segment> listSegments; // Trace de la tortue
@@ -38,69 +33,70 @@ public class Tortue extends Observable {
 	public double taille;
 	public int vitesse; // distance parcourue a chaque ité
 	public int separation; // distance minimale a laisser entre chaque tortue
-	public int champDeVision = 180; // A changer eventuellement
+	public int champDeVision = 10; // A changer eventuellement
 	public double distance =50;
 
 
-    public Tortue(int x, int y, int coul, Forme forme, int taille, int vitesse, int separation) {
-        this.x = x;
-        this.coul = coul;
-        this.y = y;
-        this.forme = forme;
-        this.taille = taille;
-        this.vitesse = vitesse;
-        this.separation = separation;
-    }
+	public Tortue(int x, int y, int coul, Forme forme, int taille, int vitesse, int separation) {
+		this.x = x;
+		this.coul = coul;
+		this.y = y;
+		this.forme = forme;
+		this.taille = taille;
+		this.vitesse = vitesse;
+		this.separation = separation;
+	}
 
 	public void reset() {
 		setPosition(0,0);
 		dir = -90;
 		coul = 0;
-	//	listSegments.clear();
-  	}
+		//	listSegments.clear();
+	}
 
 	public void setPosition(double newX, double newY) {
 		x = newX;
 		y = newY;
 	}
 
-    public void avancer(ArrayList<Tortue> listTortues) {
-        int newX = (int) Math.round(x + vitesse * Math.cos(ratioDegRad * dir));
-        int newY = (int) Math.round(y + vitesse * Math.sin(ratioDegRad * dir));
-        boolean positionOk = false;
-        while (!positionOk) {
-            positionOk = checkPosition(newX, newY, listTortues, separation);
-            if (!positionOk) {
-                newX = (int) Math.round(x + (vitesse - 1) * Math.cos(ratioDegRad * dir));
-                newY = (int) Math.round(y + (vitesse - 2) * Math.sin(ratioDegRad * dir));
-            }
-        }
-        x = newX;
-        y = newY;
-        setChanged();
-        notifyObservers();
-    }
+	public void avancer(ArrayList<Tortue> listTortues) {
+		int newX = (int) Math.round(x + vitesse * Math.cos(ratioDegRad * dir));
+		int newY = (int) Math.round(y + vitesse * Math.sin(ratioDegRad * dir));
+		boolean positionOk = false;
+		while (!positionOk) {
+			positionOk = checkPosition(newX, newY, listTortues, separation);
+			if (!positionOk) {
+				newX = (int) Math.round(x + (vitesse - 1) * Math.cos(ratioDegRad * dir));
+				newY = (int) Math.round(y + (vitesse - 2) * Math.sin(ratioDegRad * dir));
+			}
+		}
+		x = newX;
+		y = newY;
+		setChanged();
+		notifyObservers();
+	}
 
-    public void droite(int ang) {
-        dir = (dir + ang) % 360;
-    }
+	public void droite(int ang) {
+		dir = (dir + ang) % 360;
+	}
 
-    public void gauche(int ang) {
-        dir = (dir - ang) % 360;
-    }
+	public void gauche(int ang) {
+		dir = (dir - ang) % 360;
+	}
 
 
 	public void couleur(int n) {
 		coul = n % 12;
 	}
 
-    public void couleurSuivante() {
-        couleur(coul + 1);
-    }
+	public void couleurSuivante() {
+		couleur(coul + 1);
+	}
 
-    /**
-     * quelques classiques
-     */
+	/**
+	 * quelques classiques
+	 */
+
 
 	public void carre(ArrayList<Tortue> listTortues) {
 		listTortues = getTortuesInFront(listTortues);
@@ -153,27 +149,28 @@ public class Tortue extends Observable {
     FLOCKING
 	 */
 
-    public void flocking(ArrayList<Tortue> listTortues, int separation) {
-        listTortues = getTortuesInFront(listTortues);
-        this.setVitesse(getVitesseMoyenne(listTortues));
-        this.setOrientation(getOrientationMoyenne(listTortues));
-        this.avancer(listTortues);
-        System.out.println("flocking");
+	public void flocking(ArrayList<Tortue> listTortues, int separation) {
 
-    }
+		listTortues = getTortuesInFront(listTortues);
+		this.setVitesse(getVitesseMoyenne(listTortues));
+		this.setOrientation(getOrientationMoyenne(listTortues));
+		this.avancer(listTortues);
+		System.out.println("flocking");
+
+	}
 
 	//retourne la liste des tortues qui sont dans le champ de vision
 	public ArrayList<Tortue> getTortuesInFront(ArrayList<Tortue> listTortues){
 		//On elimine celles qui sont deriere
-        ArrayList<Tortue> listClone = new ArrayList<Tortue>();
+		ArrayList<Tortue> list = new ArrayList<Tortue>();
 		for(Tortue tortue : listTortues){
 			if(this.estADistance(tortue) && this.estDansChamp(tortue)){
-				listClone.add(tortue);
+				list.add(tortue);
 			}
 		}
 
-        return listTortues;
-    }
+		return list;
+	}
 
 	public boolean estADistance(Tortue tortue){
 		return getDistance(x, y, tortue.getX(), tortue.getY()) < distance;
@@ -201,30 +198,23 @@ public class Tortue extends Observable {
 	//retourne la vitesse moyenne de la liste de tortue
 	public int getVitesseMoyenne(ArrayList<Tortue> listTortues){
 
-        int vitesseMoyenne = 0;
-        if(listTortues.size() > 0){
-            for (Tortue tortue : listTortues) {
-                vitesseMoyenne += tortue.getVitesse();
-            }
-            vitesseMoyenne /= listTortues.size();
-        }
+		int vitesseMoyenne = 0;
+		for (Tortue tortue : listTortues) {
+			vitesseMoyenne += tortue.getVitesse();
+		}
 
-		return vitesseMoyenne;
+		return (listTortues.size() > 0)? vitesseMoyenne/listTortues.size() : 0;
 	}
 
 	//retourne l'orientation moyenne de la liste de tortue
 	public int getOrientationMoyenne(ArrayList<Tortue> listTortues){
+		int orientationMoyenne =0;
 
-	    int orientationMoyenne =0;
-
-		if(listTortues.size() > 0) {
-            for (Tortue tortue : listTortues) {
-                orientationMoyenne += tortue.getOrientation();
-            }
-            orientationMoyenne /= listTortues.size();
-        }
-        return orientationMoyenne;
-    }
+		for (Tortue tortue : listTortues) {
+			orientationMoyenne += tortue.getOrientation();
+		}
+		return (listTortues.size() > 0)? orientationMoyenne / listTortues.size() : 0;
+	}
 
 
 	//On regarde si une des tortues devant nous va se retrouver dans la zone critique de promiscuitée
@@ -269,10 +259,13 @@ public class Tortue extends Observable {
 	}
 	public int getVitesse(){ return this.vitesse;}
 	public int getOrientation(){return this.dir;}
-    public void setCurrent(boolean set) {
-        this.estCourante = set;
-        setChanged();
-        notifyObservers();
-    }
+	public void setCurrent(boolean set) {
+		this.estCourante = set;
+		setChanged();
+		notifyObservers();
+	}
 
+	public boolean getEstCourante() {
+		return this.estCourante;
+	}
 }
