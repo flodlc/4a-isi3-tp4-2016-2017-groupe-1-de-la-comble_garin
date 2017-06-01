@@ -35,8 +35,8 @@ public class FeuilleDessinView extends JPanel implements Observer {
 
     public void feuilleDessinInit() {
         setBackground(Color.white);
-        setSize(new Dimension(600, 400));
-        setPreferredSize(new Dimension(600, 400));
+        setSize(new Dimension(1000, 1000));
+        setPreferredSize(new Dimension(1000, 1000));
     }
 
     public void setCurrentTortue(Tortue tortue) {
