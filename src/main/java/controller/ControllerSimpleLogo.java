@@ -82,9 +82,9 @@ public class ControllerSimpleLogo implements ActionListener {
 
     private void createTortue(int coul) {
         Random rd = new Random();
-        int x = 400+rd.nextInt(200);
-        int y = 400+rd.nextInt(200);
-        Tortue tortue = new Tortue(x, y, this.colors.get(coul), new FormeRectangle(), this.vitesse, 1, 1);
+        int x = 300 + rd.nextInt(100);
+        int y = 300 + rd.nextInt(100);
+        Tortue tortue = new Tortue(x, y, colors.get(coul), new FormeRectangle(), this.vitesse, 1, 1);
         this.listTortues.add(tortue);
         this.simpleLogoView.addTortue(tortue);
         setCurrentTortue(tortue);
