@@ -53,46 +53,57 @@ public class ControllerSimpleLogo implements ActionListener {
         this.currentTortue.setVitesse(this.vitesse);
     }
 
+    public void avancer() {
+        try {
+            int v = Integer.parseInt(simpleLogoView.getInputValue());
+            for (Tortue tortue : listTortues) {
+                if (!tortue.getEstCourante())
+                    tortue.setVitesse(0);
+            }
+            currentTortue.avancer(this.listTortues);
+
+            for (Tortue tortue : listTortues) {
+                if (!tortue.getEstCourante())
+                    tortue.flocking(listTortues, 1);
+            }
+
+        } catch (NumberFormatException ex) {
+            System.err.println("ce n'est pas un nombre : " + simpleLogoView.getInputValue());
+        }
+    }
+
+    public void tournerDroite() {
+        try {
+            int v = Integer.parseInt(simpleLogoView.getInputValue());
+            currentTortue.droite(v);
+        } catch (NumberFormatException ex) {
+            System.err.println("Ce n'est pas un nombre : " + simpleLogoView.getInputValue());
+        }
+    }
+
+    public void tournerGauche() {
+        try {
+            int v = Integer.parseInt(simpleLogoView.getInputValue());
+            currentTortue.gauche(v);
+        } catch (NumberFormatException ex) {
+            System.err.println("Ce n'est pas un nombre : " + simpleLogoView.getInputValue());
+        }
+    }
+
     public void actionPerformed(ActionEvent actionEvent) {
         Object obj = actionEvent.getSource();
         String actionCommand = actionEvent.getActionCommand();
         if (obj instanceof javax.swing.JButton) {
             // actions des boutons du haut
             if (actionCommand.equals("Avancer")) {
-                try {
-                    int v = Integer.parseInt(simpleLogoView.getInputValue());
-                    for (Tortue tortue : listTortues) {
-                        if (!tortue.getEstCourante())
-                            tortue.setVitesse(0);
-                    }
-                    currentTortue.avancer(this.listTortues);
-
-                    for (Tortue tortue : listTortues) {
-                        if (!tortue.getEstCourante())
-                            tortue.flocking(listTortues, 1);
-                    }
-
-                } catch (NumberFormatException ex) {
-                    System.err.println("ce n'est pas un nombre : " + simpleLogoView.getInputValue());
-                }
-
+                avancer();
             } else if (actionCommand.equals("Add")) {
                 System.out.println("Nouvelle tortue !");
                 this.createTortue();
             } else if (actionCommand.equals("Droite")) {
-                try {
-                    int v = Integer.parseInt(simpleLogoView.getInputValue());
-                    currentTortue.droite(v);
-                } catch (NumberFormatException ex) {
-                    System.err.println("Ce n'est pas un nombre : " + simpleLogoView.getInputValue());
-                }
+                tournerDroite();
             } else if (actionCommand.equals("Gauche")) {
-                try {
-                    int v = Integer.parseInt(simpleLogoView.getInputValue());
-                    currentTortue.gauche(v);
-                } catch (NumberFormatException ex) {
-                    System.err.println("Ce n'est pas un nombre : " + simpleLogoView.getInputValue());
-                }
+                tournerGauche();
             }
             // actions des boutons du bas
             else if (actionCommand.equals("Proc1"))

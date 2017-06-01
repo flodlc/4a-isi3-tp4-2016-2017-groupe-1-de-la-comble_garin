@@ -72,7 +72,7 @@ public class Tortue extends Observable {
             positionOk = checkPosition(newX, newY, listTortues, separation);
             if (!positionOk) {
                 newX = (int) Math.round(x + (vitesse - 1) * Math.cos(ratioDegRad * dir));
-                newY = (int) Math.round(y + (vitesse - 2) * Math.sin(ratioDegRad * dir));
+                newY = (int) Math.round(y + (vitesse - 1) * Math.sin(ratioDegRad * dir));
             }
         }
         x = newX;
@@ -160,7 +160,6 @@ public class Tortue extends Observable {
         this.setVitesse(getVitesseMoyenne(listTortues));
         this.setOrientation(getOrientationMoyenne(listTortues));
         this.avancer(listTortues);
-        System.out.println("flocking");
 
     }
 

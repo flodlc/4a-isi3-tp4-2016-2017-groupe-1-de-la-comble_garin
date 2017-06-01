@@ -6,11 +6,7 @@ import model.Tortue;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 
 
 /*************************************************************************
@@ -54,7 +50,17 @@ public class SimpleLogoView extends JFrame {
 		        System.exit(0);
 		    }
 		});
+        setFocusable(true);
+        addKeyListener(new SimpleLogoViewListener(this));
 	}
+
+    public void tournerDroite() {
+        controller.tournerDroite();
+    }
+
+    public void tournerGauche() {
+        controller.tournerGauche();
+    }
 
 	public void setCurrentTortue(Tortue tortue) {
 		controller.setCurrentTortue(tortue);
