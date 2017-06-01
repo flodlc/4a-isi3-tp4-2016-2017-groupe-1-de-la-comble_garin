@@ -4,8 +4,11 @@ import model.Tortue;
 import view.FormeRectangle;
 import view.SimpleLogoView;
 
+import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -23,21 +26,54 @@ public class ControllerSimpleLogo implements ActionListener {
         this.simpleLogoView = new SimpleLogoView(this);
         this.listTortues = new ArrayList<Tortue>();
         this.vitesse = 10;
-        this.createTortue();
-        this.createTortue();
-        this.createTortue();
-        this.createTortue();
+        for(int j= 0; j < 4; j++) {
+            for (int i = 0; i < 25; i++) {
+                this.createTortue(j);
+            }
+        }
+        for(Tortue tortue : listTortues) {
+            tortue.aleatoireMove(listTortues);
+        }
+        startFlocking();
+
+
+
+    }
+
+
+    public void startFlocking(){
+        new Thread() {
+            public void run() {
+                while(true) {
+                    moveFlocking();
+
+                    try {
+                        sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }.start();
+
+    }
+    public void moveFlocking(){
+
+        for (Tortue tortue : listTortues) {
+                tortue.flocking(listTortues, 1);
+        }
+
     }
 
     public SimpleLogoView getSimpleLogoView() {
         return simpleLogoView;
     }
 
-    private void createTortue() {
+    private void createTortue(int coul) {
         Random rd = new Random();
-        int x = rd.nextInt(400);
-        int y = rd.nextInt(400);
-        Tortue tortue = new Tortue(x, y, 0, new FormeRectangle(), this.vitesse, 20, 1);
+        int x = 400+rd.nextInt(200);
+        int y = 400+rd.nextInt(200);
+        Tortue tortue = new Tortue(x, y, coul, new FormeRectangle(), this.vitesse, 1, 1);
         this.listTortues.add(tortue);
         this.simpleLogoView.addTortue(tortue);
         setCurrentTortue(tortue);
@@ -63,7 +99,7 @@ public class ControllerSimpleLogo implements ActionListener {
                         if (!tortue.getEstCourante())
                             tortue.setVitesse(0);
                     }
-                    currentTortue.avancer(this.listTortues);
+                    currentTortue.avancer();
 
                     for (Tortue tortue : listTortues) {
                         if (!tortue.getEstCourante())
@@ -76,7 +112,7 @@ public class ControllerSimpleLogo implements ActionListener {
 
             } else if (actionCommand.equals("Add")) {
                 System.out.println("Nouvelle tortue !");
-                this.createTortue();
+                this.createTortue(0);
             } else if (actionCommand.equals("Droite")) {
                 try {
                     int v = Integer.parseInt(simpleLogoView.getInputValue());
