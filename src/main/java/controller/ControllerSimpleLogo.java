@@ -9,6 +9,8 @@ import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by calvi on 26/04/2017.
