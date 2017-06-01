@@ -30,7 +30,6 @@ public class FeuilleDessinView extends JPanel {
         feuilleDessinInit();
         this.simpleLogoView = simpleLogoView;
         map = new HashMap<Tortue, TortueView>();
-        addMouseListener(new TortueMouseListener(map, this));
     }
 
     public void feuilleDessinInit() {
@@ -44,7 +43,7 @@ public class FeuilleDessinView extends JPanel {
     }
 
     public void addTortue(Tortue tortue) {
-        TortueView tortueView = new TortueView(tortue,"Rectangle");
+        TortueView tortueView = new TortueView(tortue,"Rectangle", this);
         map.put(tortue, tortueView);
         Graphics graphics = getGraphics();
         Dimension dim = getSize();
@@ -77,11 +76,4 @@ public class FeuilleDessinView extends JPanel {
             this.add(tortueView);
         }
     }
-
-/*    public void update(Observable o, Object arg) {
-        Graphics graphics = getGraphics();
-        Dimension dim = getSize();
-        graphics.clearRect(0, 0, dim.width, dim.height);
-        paintComponent(getGraphics());
-    }*/
 }

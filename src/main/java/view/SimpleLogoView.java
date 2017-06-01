@@ -29,7 +29,6 @@ public class SimpleLogoView extends JFrame {
     public static final Dimension HGAP = new Dimension(5, 1);
 
     private FeuilleDessinView feuilleDessinView;
-    private JTextField inputValue;
     private ControllerSimpleLogo controller;
 
 
@@ -87,11 +86,6 @@ public class SimpleLogoView extends JFrame {
         ImageIcon icon = new ImageIcon("images/favicon.png");
         this.setIconImage(icon.getImage());
         setVisible(true);
-    }
-
-    public String getInputValue() {
-        String s = inputValue.getText();
-        return (s);
     }
 
 

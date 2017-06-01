@@ -89,40 +89,24 @@ public class ControllerSimpleLogo implements ActionListener {
     }
 
     public void avancer() {
-        try {
-            int v = Integer.parseInt(simpleLogoView.getInputValue());
-            for (Tortue tortue : listTortues) {
-                if (!tortue.getEstCourante())
-                    tortue.setVitesse(0);
-            }
-            currentTortue.avancer();
+        for (Tortue tortue : listTortues) {
+            if (!tortue.getEstCourante())
+                tortue.setVitesse(0);
+        }
+        currentTortue.avancer();
 
-            for (Tortue tortue : listTortues) {
-                if (!tortue.getEstCourante())
-                    tortue.flocking(listTortues, 1);
-            }
-
-        } catch (NumberFormatException ex) {
-            System.err.println("ce n'est pas un nombre : " + simpleLogoView.getInputValue());
+        for (Tortue tortue : listTortues) {
+            if (!tortue.getEstCourante())
+                tortue.flocking(listTortues, 1);
         }
     }
 
     public void tournerDroite() {
-        try {
-            int v = Integer.parseInt(simpleLogoView.getInputValue());
-            currentTortue.droite(v);
-        } catch (NumberFormatException ex) {
-            System.err.println("Ce n'est pas un nombre : " + simpleLogoView.getInputValue());
-        }
+        currentTortue.droite(vitesse);
     }
 
     public void tournerGauche() {
-        try {
-            int v = Integer.parseInt(simpleLogoView.getInputValue());
-            currentTortue.gauche(v);
-        } catch (NumberFormatException ex) {
-            System.err.println("Ce n'est pas un nombre : " + simpleLogoView.getInputValue());
-        }
+        currentTortue.gauche(vitesse);
     }
 
     public void actionPerformed(ActionEvent actionEvent) {

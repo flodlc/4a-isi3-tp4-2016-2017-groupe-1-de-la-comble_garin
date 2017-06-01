@@ -13,21 +13,13 @@ import java.util.Map;
  */
 public class TortueMouseListener extends MouseAdapter {
 
-    private Map<Tortue, TortueView> map;
-    private FeuilleDessinView feuilleDessinView;
+    private TortueView tortueView;
 
-    public TortueMouseListener(Map<Tortue, TortueView> map, FeuilleDessinView feuilleDessinView) {
-        this.map = map;
-        this.feuilleDessinView = feuilleDessinView;
+    public TortueMouseListener(TortueView tortueView) {
+        this.tortueView = tortueView;
     }
 
     public void mousePressed(MouseEvent e) {
-        Point p = e.getPoint();
-        for (Map.Entry<Tortue, TortueView> entry : map.entrySet()) {
-            if (entry.getValue().getDessinTortue().contains(p)) {
-                feuilleDessinView.setCurrentTortue(entry.getKey());
-                break;
-            }
-        }
+        tortueView.setCurrentTortue(tortueView.getTortue());
     }
 }
