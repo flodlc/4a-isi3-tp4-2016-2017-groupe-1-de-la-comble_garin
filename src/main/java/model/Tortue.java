@@ -1,12 +1,8 @@
 package model;
 
-import view.Forme;
-
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Observable;
-import java.util.Random;
 
 
 /*************************************************************************
@@ -31,27 +27,23 @@ public class Tortue extends Observable {
     /*
     protected ArrayList<Segment> listSegments; // Trace de la tortue
     */
-    protected double x, y;
-    protected int dir;
-    protected Color coul;
-    public Forme forme;
-    public double taille;
-    public int vitesse; // distance parcourue a chaque ité
-    public int separation; // distance minimale a laisser entre chaque tortue
-    public int iterOutOfFlocking;
+    private double x, y;
+    private int dir;
+    private Color coul;
+    private double taille;
+    private int vitesse; // distance parcourue a chaque ité
+    private int iterOutOfFlocking;
     public int champDeVision = 120; // A changer eventuellement
-    public double distance = 60;
+    private double distance = 60;
     private static int SIZE_GAME = 700;
 
 
-    public Tortue(int x, int y, Color coul, Forme forme, int taille, int vitesse, int separation) {
+    public Tortue(int x, int y, Color coul, int taille, int vitesse, int separation) {
         this.x = x;
         this.coul = coul;
         this.y = y;
-        this.forme = forme;
         this.taille = taille;
         this.vitesse = vitesse;
-        this.separation = separation;
         this.iterOutOfFlocking = 0;
     }
 
@@ -81,30 +73,17 @@ public class Tortue extends Observable {
         notifyObservers();
     }
 
-    public void droite(int ang) {
-        this.dir = (this.dir + ang) % 360;
-    }
 
-    public void gauche(int ang) {
-        this.dir = (this.dir - ang) % 360;
-    }
-
-	/*
-    FLOCKING
-	 */
     public void flocking(ArrayList<Tortue> listTortues) {
-        if (this.iterOutOfFlocking == 0) {
-            listTortues = getTortuesInFront(listTortues);
-            this.setOrientation(getOrientationMoyenne(listTortues));
-        } else {
-            this.iterOutOfFlocking--;
-        }
+        listTortues = getTortuesInFront(listTortues);
+        this.setVitesse(getVitesseMoyenne(listTortues));
+        this.setOrientation(getOrientationMoyenne(listTortues));
         this.avancer();
     }
 
     //retourne la liste des tortues qui sont dans le champ de vision
     public ArrayList<Tortue> getTortuesInFront(ArrayList<Tortue> listTortues) {
-        //On elimine celles qui sont deriere
+
         ArrayList<Tortue> list = new ArrayList<Tortue>();
         for (Tortue tortue : listTortues) {
             if (tortue.getColor() == coul && this.estADistance(tortue) && this.estDansChamp(tortue.getX(), tortue.getY())) {
@@ -141,12 +120,11 @@ public class Tortue extends Observable {
         int orientationMoyenne = 0;
         for (Tortue tortue : listTortues) {
             orientationMoyenne += tortue.getOrientation();
-            //orientationMoyenne += getAngle(tortue);
         }
         return (listTortues.size() > 0) ? orientationMoyenne / listTortues.size() : dir;
     }
 
-    public void aleatoireMove(ArrayList<Tortue> listTortues) {
+    public void aleatoireMove() {
         int angle = (int) (Math.random() * 360);
         this.setOrientation(angle % 360);
         avancer();

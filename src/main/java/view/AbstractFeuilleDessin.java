@@ -26,7 +26,7 @@ public class AbstractFeuilleDessin extends JPanel {
     }
 
     public void addTortue(Tortue tortue) {
-        TortueView tortueView = new TortueView(tortue,"Rectangle", this);
+        TortueView tortueView = new TortueView(tortue, "Rectangle", this);
         map.put(tortue, tortueView);
         Graphics graphics = getGraphics();
         Dimension dim = getSize();

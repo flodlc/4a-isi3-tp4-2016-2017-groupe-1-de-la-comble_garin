@@ -2,7 +2,6 @@ package controller;
 
 import model.Tortue;
 import view.AbstractSimpleLogoView;
-import view.FormeRectangle;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ import java.util.Random;
  */
 public abstract class ControllerMain {
 
-    protected ArrayList<Tortue> listTortues;
+    private ArrayList<Tortue> listTortues;
     protected AbstractSimpleLogoView simpleLogoView;
     protected ArrayList<Color> colors;
 
@@ -34,7 +33,7 @@ public abstract class ControllerMain {
             }
         }
         for (Tortue tortue : listTortues) {
-            tortue.aleatoireMove(listTortues);
+            tortue.aleatoireMove();
         }
         startFlocking();
     }
@@ -70,7 +69,7 @@ public abstract class ControllerMain {
         Random rd = new Random();
         int x = 200 + rd.nextInt(300);
         int y = 200 + rd.nextInt(300);
-        Tortue tortue = new Tortue(x, y, colors.get(coul), new FormeRectangle(), 15, 10, 1);
+        Tortue tortue = new Tortue(x, y, colors.get(coul), 15, 10, 1);
         this.listTortues.add(tortue);
         this.simpleLogoView.addTortue(tortue);
     }

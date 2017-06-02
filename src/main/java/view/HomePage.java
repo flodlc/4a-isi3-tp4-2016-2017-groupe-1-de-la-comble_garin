@@ -3,9 +3,7 @@ package view;
 import controller.ControllerHomePage;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.net.URL;
 
 /**
  * Created by Lucas on 01/06/2017.
@@ -37,5 +35,4 @@ public class HomePage extends JFrame {
         this.setVisible(false);
         dispose();
     }
-
 }

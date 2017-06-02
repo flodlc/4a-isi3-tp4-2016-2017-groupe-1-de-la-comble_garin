@@ -3,12 +3,12 @@ package view;
 import controller.ControllerHomePage;
 
 import java.awt.*;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 public class HomePagePanel extends JPanel {
+
     private ControllerHomePage controllerHomePage;
 
     public HomePagePanel(ControllerHomePage controllerHomePage) {
@@ -39,5 +39,4 @@ public class HomePagePanel extends JPanel {
         button.setForeground(Color.WHITE);
         return button;
     }
-
 }
