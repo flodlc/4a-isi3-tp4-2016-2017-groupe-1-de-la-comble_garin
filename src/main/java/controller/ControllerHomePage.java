@@ -1,6 +1,7 @@
 package controller;
 
 import view.HomePage;
+import view.SettingPage;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -11,6 +12,7 @@ import java.awt.event.ActionListener;
  */
 public class ControllerHomePage implements ActionListener {
     private HomePage homePage;
+    private SettingPage settingPage;
 
     public ControllerHomePage() {
         this.homePage = new HomePage(this);
@@ -20,6 +22,7 @@ public class ControllerHomePage implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
         String actionCommand = actionEvent.getActionCommand();
         this.homePage.close();
+        System.out.println(actionCommand);
         if (actionCommand.equals("MODE ALEATOIRE")) {
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
@@ -28,6 +31,8 @@ public class ControllerHomePage implements ActionListener {
                 }
             });
         } else if (actionCommand.equals("MODE BOMBE")) {
+            this.settingPage = new SettingPage(this);
+        } else if (actionCommand.equals("MODE")) {
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
                     ControllerMain controller = new ControllerGame();
