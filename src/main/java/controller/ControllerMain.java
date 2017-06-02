@@ -26,10 +26,10 @@ public abstract class ControllerMain {
     }
 
 
-    protected void startPopulation(int nbGroup, int nbByGroup) {
+    protected void startPopulation(int nbGroup, int nbByGroup, int porteeTortue) {
         for (int j = 0; j < nbGroup; j++) {
             for (int i = 0; i < nbByGroup; i++) {
-                this.createTortue(j);
+                this.createTortue(j, porteeTortue);
             }
         }
         for (Tortue tortue : listTortues) {
@@ -65,11 +65,11 @@ public abstract class ControllerMain {
         return simpleLogoView;
     }
 
-    protected void createTortue(int coul) {
+    protected void createTortue(int coul, int porteeTortue) {
         Random rd = new Random();
         int x = 200 + rd.nextInt(300);
         int y = 200 + rd.nextInt(300);
-        Tortue tortue = new Tortue(x, y, colors.get(coul), 15, 10, 1);
+        Tortue tortue = new Tortue(x, y, colors.get(coul), 15, 10, 1, porteeTortue);
         this.listTortues.add(tortue);
         this.simpleLogoView.addTortue(tortue);
     }

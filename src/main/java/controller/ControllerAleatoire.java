@@ -10,6 +10,6 @@ public class ControllerAleatoire extends ControllerMain {
     public ControllerAleatoire() {
         super();
         simpleLogoView = new SimpleLogoView(this);
-        this.startPopulation(3, 100);
+        this.startPopulation(3, 100, 150);
     }
 }

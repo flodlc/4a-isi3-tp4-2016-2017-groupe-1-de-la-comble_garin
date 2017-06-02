@@ -32,10 +32,15 @@ public class ControllerHomePage implements ActionListener {
             });
         } else if (actionCommand.equals("MODE BOMBE")) {
             this.settingPage = new SettingPage(this);
-        } else if (actionCommand.equals("MODE")) {
+        } else if (actionCommand.equals("VALIDER")) {
+            final int nbGroupe = this.settingPage.getNbGroupe();
+            final int nbTortues = this.settingPage.getNbTortues();
+            final int porteeTortue = this.settingPage.getPorteeTortue();
+            final int porteeBombe = this.settingPage.getPorteeBombe();
+            this.settingPage.close();
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
-                    ControllerMain controller = new ControllerGame();
+                    ControllerMain controller = new ControllerGame(nbGroupe, nbTortues, porteeTortue, porteeBombe);
                     controller.getSimpleLogoView().setVisible(true);
                 }
             });

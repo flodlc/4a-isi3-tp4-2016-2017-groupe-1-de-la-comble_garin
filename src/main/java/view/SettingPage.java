@@ -4,6 +4,7 @@ import controller.ControllerHomePage;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.text.NumberFormat;
@@ -13,6 +14,10 @@ import java.text.NumberFormat;
  */
 public class SettingPage extends JFrame {
     private ControllerHomePage controller;
+    private JFormattedTextField nbGroupe;
+    private JFormattedTextField nbTortues;
+    private JFormattedTextField porteeTortue;
+    private JFormattedTextField porteeBombe;
 
     public SettingPage(ControllerHomePage controller) {
         this.controller = controller;
@@ -36,13 +41,13 @@ public class SettingPage extends JFrame {
         formatter.setAllowsInvalid(false);
         // If you want the value to be committed on each keystroke instead of focus lost
         formatter.setCommitsOnValidEdit(true);
-        JFormattedTextField text1 = new JFormattedTextField(formatter);
+        nbGroupe = new JFormattedTextField(formatter);
         formatter.setMaximum(100);
-        JFormattedTextField text2 = new JFormattedTextField(formatter);
-        formatter.setMaximum(50);
-        JFormattedTextField text3 = new JFormattedTextField(formatter);
+        nbTortues = new JFormattedTextField(formatter);
+        formatter.setMaximum(200);
+        porteeTortue = new JFormattedTextField(formatter);
         formatter.setMaximum(150);
-        JFormattedTextField text4 = new JFormattedTextField(formatter);
+        porteeBombe = new JFormattedTextField(formatter);
         JLabel label1 =new JLabel("Nombre de groupe :");
         JLabel label2 =new JLabel("Nombre de tortue par groupe :");
         JLabel label3 =new JLabel("Portée de la vue d'une tortue :");
@@ -53,18 +58,26 @@ public class SettingPage extends JFrame {
         label4.setForeground(Color.white);
 
         panel1.add(label1);
-        panel1.add(text1);
+        panel1.add(nbGroupe);
         panel1.add(label2);
-        panel1.add(text2);
+        panel1.add(nbTortues);
         panel1.add(label3);
-        panel1.add(text3);
+        panel1.add(porteeTortue);
         panel1.add(label4);
-        panel1.add(text4);
+        panel1.add(porteeBombe);
         panel1.setBackground(new Color(0, 61, 79));
         this.setContentPane(panel1);
         setResizable(false);
         this.setBackground(new Color(0, 61, 79));
-
+        JButton button = new JButton("VALIDER");
+        button.setPreferredSize(new Dimension(120, 100));
+        button.setBackground(new Color(32, 134, 166));
+        button.setBorder(new LineBorder(new Color(102, 172, 194)));
+        button.addActionListener(this.controller);
+        Font font = new Font("Courier", Font.BOLD, 13);
+        button.setFont(font);
+        button.setForeground(Color.WHITE);
+        this.add(button);
         //favicon
         ImageIcon icon = new ImageIcon("images/favicon.png");
         this.setIconImage(icon.getImage());
@@ -76,4 +89,39 @@ public class SettingPage extends JFrame {
         this.setVisible(false);
         dispose();
     }
+
+    public int getNbGroupe() {
+        try {
+            Number n = (Number) this.nbGroupe.getValue();
+            return n.intValue();
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+    public int getNbTortues() {
+        try {
+        Number n = (Number)this.nbTortues.getValue();
+        return n.intValue();
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+    public int getPorteeTortue() {
+        try {
+        Number n = (Number)this.porteeTortue.getValue();
+        return n.intValue();
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+    public int getPorteeBombe() {
+        try {
+        Number n = (Number)this.porteeBombe.getValue();
+        return n.intValue();
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+
 }

@@ -33,17 +33,18 @@ public class Tortue extends Observable {
     private double taille;
     private int vitesse; // distance parcourue a chaque ité
     private int iterOutOfFlocking;
-    public int champDeVision = 120; // A changer eventuellement
+    public int champDeVision; // A changer eventuellement
     private double distance = 60;
     private static int SIZE_GAME = 700;
 
 
-    public Tortue(int x, int y, Color coul, int taille, int vitesse, int separation) {
+    public Tortue(int x, int y, Color coul, int taille, int vitesse, int separation, int porteeTortue) {
         this.x = x;
         this.coul = coul;
         this.y = y;
         this.taille = taille;
         this.vitesse = vitesse;
+        this.champDeVision = porteeTortue;
         this.iterOutOfFlocking = 0;
     }
 

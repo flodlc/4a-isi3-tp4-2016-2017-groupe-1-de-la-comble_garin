@@ -8,11 +8,13 @@ import view.SimpleLogoViewGame;
  * Created by Lucas on 01/06/2017.
  */
 public class ControllerGame extends ControllerMain {
+    private int porteeBombe;
 
-    public ControllerGame() {
+    public ControllerGame(int nbGroupe, int nbTortues, int porteeTortue, int porteeBombe) {
         super();
+        this.porteeBombe = porteeBombe;
         this.simpleLogoView = new SimpleLogoViewGame(this);
-        this.startPopulation(1, 300);
+        this.startPopulation(nbGroupe, nbTortues, porteeTortue);
     }
 
     public void layBombe(int x, int y) {
