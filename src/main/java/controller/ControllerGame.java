@@ -1,6 +1,7 @@
 package controller;
 
 import model.Bombe;
+import model.Tortue;
 import view.SimpleLogoViewGame;
 
 /**

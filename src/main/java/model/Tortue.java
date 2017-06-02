@@ -75,9 +75,12 @@ public class Tortue extends Observable {
 
 
     public void flocking(ArrayList<Tortue> listTortues) {
-        listTortues = getTortuesInFront(listTortues);
-        this.setVitesse(getVitesseMoyenne(listTortues));
-        this.setOrientation(getOrientationMoyenne(listTortues));
+        if (iterOutOfFlocking == 0) {
+            listTortues = getTortuesInFront(listTortues);
+            this.setOrientation(getOrientationMoyenne(listTortues));
+        } else {
+            iterOutOfFlocking--;
+        }
         this.avancer();
     }
 

@@ -12,7 +12,7 @@ import java.util.Random;
  */
 public abstract class ControllerMain {
 
-    private ArrayList<Tortue> listTortues;
+    protected ArrayList<Tortue> listTortues;
     protected AbstractSimpleLogoView simpleLogoView;
     protected ArrayList<Color> colors;
 
