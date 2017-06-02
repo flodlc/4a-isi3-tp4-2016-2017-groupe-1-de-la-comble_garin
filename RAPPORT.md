@@ -43,6 +43,8 @@ Flocking:
 Au lancement de l'application, chacune des tortues éparpillées sur le terrain adopte une direction aléatoire et une vitesse. Ensuite, on lance un flocking en boucle. Le controleur parcours en permanence la liste des tortues en lançant leur méthode flocking().
 
 ![IMAGE](images/flocking.png)
+
+
 On récupère la liste des tortues visibles par la tortue (en fonction de son champ de vision et la portée de sa vue). Ensuite, si elle voie des tortues, on va recalculer sa direction à partir de la moyenne de la direction de toutes les tortues qu'elle voie. On a utiliser Al Kashi pour calculer la nouvelle direction. 
 
 Ajout de fonctionnalitées:
