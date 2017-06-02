@@ -16,15 +16,15 @@ public class Bombe extends Observable{
         this.size = size;
         this.x = x;
         this.y = y;
-        this.time = 500;
+        this.time = 300;
         this.explode();
     }
 
     private void explode() {
         new Thread() {
             public void run() {
-                while (getExplosionSize() < 40) {
-                    setExplosionSize(getExplosionSize() + 8);
+                while (getExplosionSize() < 60) {
+                    setExplosionSize(getExplosionSize() + 15);
                     setChanged();
                     notifyObservers();
                     try {
