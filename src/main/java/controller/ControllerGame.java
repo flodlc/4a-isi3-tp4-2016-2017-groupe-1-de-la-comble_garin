@@ -12,7 +12,7 @@ public class ControllerGame extends ControllerMain {
     public ControllerGame() {
         super();
         this.simpleLogoView = new SimpleLogoViewGame(this);
-        this.startPopulation(4, 100);
+        this.startPopulation(1, 300);
     }
 
     public void layBombe(int x, int y) {

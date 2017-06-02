@@ -27,7 +27,7 @@ public class ControllerHomePage implements ActionListener {
                     controller.getSimpleLogoView().setVisible(true);
                 }
             });
-        } else if (actionCommand.equals("MODE SURVIVOR")) {
+        } else if (actionCommand.equals("MODE BOMBE")) {
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
                     ControllerMain controller = new ControllerGame();

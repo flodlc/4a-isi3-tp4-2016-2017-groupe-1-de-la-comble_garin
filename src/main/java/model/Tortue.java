@@ -135,7 +135,7 @@ public class Tortue extends Observable {
 
     public void checkBombe(Bombe bombe) {
         if (this.getDistance(this.x, this.y, bombe.getX(), bombe.getY()) <= bombe.getMaxSizeExplosion()) {
-            this.iterOutOfFlocking = 100;
+            this.iterOutOfFlocking = 50;
             this.dir = 180 - (int)Math.toDegrees(this.getAngle(bombe.getX(), bombe.getY()));
 
             setChanged();

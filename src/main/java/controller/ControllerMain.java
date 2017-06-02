@@ -44,7 +44,7 @@ public abstract class ControllerMain {
                 while (true) {
                     moveFlocking();
                     try {
-                        sleep(20);
+                        sleep(15);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
