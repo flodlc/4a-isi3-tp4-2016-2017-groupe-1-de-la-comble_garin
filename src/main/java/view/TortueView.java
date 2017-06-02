@@ -1,6 +1,5 @@
 package view;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import model.Tortue;
 
 import javax.swing.*;
@@ -17,14 +16,12 @@ public class TortueView extends JPanel implements Observer {
     private Tortue tortue;
     private Color couleur;
     private Polygon dessinTortue;
-    private Forme forme;
     private AbstractFeuilleDessin feuilleDessinView;
 
     public TortueView(Tortue tortue, String forme, AbstractFeuilleDessin feuilleDessinView) {
         this.tortue = tortue;
         this.tortue.addObserver(this);
-        setForme(forme);
-        this.dessinTortue = this.forme.getPolygon(tortue);
+        this.dessinTortue = buildPolygon();
         this.feuilleDessinView = feuilleDessinView;
         this.setLocation((int) this.tortue.getX(), (int) this.tortue.getY());
     }
@@ -35,8 +32,8 @@ public class TortueView extends JPanel implements Observer {
         setOpaque(false);
         g.setColor(getCouleur());
         AffineTransform at = new AffineTransform();
-        at.rotate(Math.toRadians(tortue.getOrientation()), tortue.getTaille()/2, tortue.getTaille()/2);
-        ((Graphics2D)g).rotate(Math.toRadians(tortue.getOrientation()), tortue.getTaille()/2, tortue.getTaille()/2);
+        at.rotate(Math.toRadians(tortue.getOrientation()), tortue.getTaille() / 2, tortue.getTaille() / 2);
+        ((Graphics2D) g).rotate(Math.toRadians(tortue.getOrientation()), tortue.getTaille() / 2, tortue.getTaille() / 2);
         g.fillPolygon(dessinTortue);
     }
 
@@ -46,13 +43,22 @@ public class TortueView extends JPanel implements Observer {
         this.repaint();
     }
 
-    public void setForme(String forme) {
-        if (forme.equals("Rectangle")) this.forme = new FormeTriangle();
-    }
+    public Polygon buildPolygon() {
 
-    /*
-    GETTEURS
-     */
+        Polygon polygon = new Polygon();
+        double taille = tortue.getTaille();
+
+        //point haut gauche
+        polygon.addPoint(0, 0);
+
+        //point haut droite
+        polygon.addPoint((int) (0 + taille), (int) (0 + taille / 4));
+
+        //point bas droite
+        polygon.addPoint(0, (int) (0 + taille / 2));
+
+        return polygon;
+    }
 
     public Color getCouleur() {
         return this.tortue.getColor();

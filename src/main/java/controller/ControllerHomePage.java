@@ -21,15 +21,15 @@ public class ControllerHomePage implements ActionListener {
         String actionCommand = actionEvent.getActionCommand();
         this.homePage.close();
         if (actionCommand.equals("MODE ALEATOIRE")) {
-            SwingUtilities.invokeLater(new Runnable(){
-                public void run(){
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
                     ControllerMain controller = new ControllerAleatoire();
                     controller.getSimpleLogoView().setVisible(true);
                 }
             });
-        }else if (actionCommand.equals("MODE SURVIVOR")) {
-            SwingUtilities.invokeLater(new Runnable(){
-                public void run(){
+        } else if (actionCommand.equals("MODE SURVIVOR")) {
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
                     ControllerMain controller = new ControllerGame();
                     controller.getSimpleLogoView().setVisible(true);
                 }

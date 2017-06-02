@@ -1,11 +1,8 @@
-package view;// package logo;
+package view;
 
 
 import controller.ControllerMain;
-import model.Tortue;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -26,21 +23,21 @@ import java.awt.event.WindowEvent;
 
 
 public class SimpleLogoView extends AbstractSimpleLogoView {
+
     protected ControllerMain controller;
 
-
-	public SimpleLogoView(ControllerMain controller) {
-	    super();
+    public SimpleLogoView(ControllerMain controller) {
+        super();
         this.feuilleDessinView = new FeuilleDessinView(this);
         this.controller = controller;
-		logoInit();
-		
-		addWindowListener(new WindowAdapter() {
-		    @Override
-		    public void windowClosing(WindowEvent arg0) {
-		        super.windowClosing(arg0);
-		        System.exit(0);
-		    }
-		});
-	}
+        logoInit();
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent arg0) {
+                super.windowClosing(arg0);
+                System.exit(0);
+            }
+        });
+    }
 }

@@ -1,12 +1,8 @@
 package model;
 
-import view.Forme;
-
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Observable;
-import java.util.Random;
 
 
 /*************************************************************************
@@ -31,26 +27,22 @@ public class Tortue extends Observable {
     /*
     protected ArrayList<Segment> listSegments; // Trace de la tortue
     */
-    protected double x, y;
-    protected int dir;
-    protected Color coul;
-    public Forme forme;
-    public double taille;
-    public int vitesse; // distance parcourue a chaque ité
-    public int separation; // distance minimale a laisser entre chaque tortue
-    public int champDeVision = 120; // A changer eventuellement
-    public double distance = 60;
+    private double x, y;
+    private int dir;
+    private Color coul;
+    private double taille;
+    private int vitesse; // distance parcourue a chaque ité
+    private int champDeVision = 120; // A changer eventuellement
+    private double distance = 60;
     private static int SIZE_GAME = 700;
 
 
-    public Tortue(int x, int y, Color coul, Forme forme, int taille, int vitesse, int separation) {
+    public Tortue(int x, int y, Color coul, int taille, int vitesse, int separation) {
         this.x = x;
         this.coul = coul;
         this.y = y;
-        this.forme = forme;
         this.taille = taille;
         this.vitesse = vitesse;
-        this.separation = separation;
     }
 
     public void avancer() {
@@ -79,17 +71,7 @@ public class Tortue extends Observable {
         notifyObservers();
     }
 
-    public void droite(int ang) {
-        this.dir = (this.dir + ang) % 360;
-    }
 
-    public void gauche(int ang) {
-        this.dir = (this.dir - ang) % 360;
-    }
-
-	/*
-    FLOCKING
-	 */
     public void flocking(ArrayList<Tortue> listTortues) {
         listTortues = getTortuesInFront(listTortues);
         this.setVitesse(getVitesseMoyenne(listTortues));
@@ -99,7 +81,7 @@ public class Tortue extends Observable {
 
     //retourne la liste des tortues qui sont dans le champ de vision
     public ArrayList<Tortue> getTortuesInFront(ArrayList<Tortue> listTortues) {
-        //On elimine celles qui sont deriere
+
         ArrayList<Tortue> list = new ArrayList<Tortue>();
         for (Tortue tortue : listTortues) {
             if (tortue.getColor() == coul && this.estADistance(tortue) && this.estDansChamp(tortue)) {
@@ -127,8 +109,7 @@ public class Tortue extends Observable {
         double a = getDistance(x, y, tortue.getX(), tortue.getY());
         double b = getDistance(x, y, tmpX, tmpY);
         double c = getDistance(tmpX, tmpY, tortue.getX(), tortue.getY());
-        //double division = (Math.pow(c, 2) - Math.pow(a, 2) - Math.pow(b, 2)) / (2 * a * c);
-        double division = (Math.pow(a, 2) + Math.pow(b, 2) - Math.pow(c, 2))/(2*a*b);
+        double division = (Math.pow(a, 2) + Math.pow(b, 2) - Math.pow(c, 2)) / (2 * a * b);
         return Math.acos(division);
     }
 
@@ -149,12 +130,11 @@ public class Tortue extends Observable {
         int orientationMoyenne = 0;
         for (Tortue tortue : listTortues) {
             orientationMoyenne += tortue.getOrientation();
-            //orientationMoyenne += getAngle(tortue);
         }
         return (listTortues.size() > 0) ? orientationMoyenne / listTortues.size() : dir;
     }
 
-    public void aleatoireMove(ArrayList<Tortue> listTortues) {
+    public void aleatoireMove() {
         int angle = (int) (Math.random() * 360);
         this.setOrientation(angle % 360);
         avancer();

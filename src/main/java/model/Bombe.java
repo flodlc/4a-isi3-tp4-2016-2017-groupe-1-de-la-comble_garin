@@ -5,7 +5,7 @@ import java.util.Observable;
 /**
  * Created by Florian on 02/06/2017.
  */
-public class Bombe extends Observable{
+public class Bombe extends Observable {
     private int size;
     private int x;
     private int y;

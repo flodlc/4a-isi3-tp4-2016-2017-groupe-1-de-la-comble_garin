@@ -1,15 +1,5 @@
 package view;
 
-import model.Tortue;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.*;
-import java.util.List;
-
-
 /**
  * Titre :        Logo
  * Description :  Un exemple de programme graphique utilisant la celebre Tortue Logo
