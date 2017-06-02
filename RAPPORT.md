@@ -56,7 +56,7 @@ Dans le mode Bombe , l'utilisateur a la possibilité de poser une bombe en cliqu
 
 ## Diagramme de classe:
 
-![IMAGE](images/uml.png)
+![IMAGE](images/uml1.png)
 
 Nous avons utiliser un pattern abstract factory qui nous permet de créer les deux modes de jeux. Ici c'est la classe ControllerMain qui joue le rôle d'abstract Factory et les deux classes ControllerAleatoire et ControllerGame (mode bombe) jouent le rôle de Factory. En plus decréer les différents objet,ces classes jouent le rôle de controlleurs. 
 
