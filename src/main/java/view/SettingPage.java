@@ -29,7 +29,7 @@ public class SettingPage extends JFrame {
         JPanel panel1 = new JPanel();
         panel1.setLayout(new BoxLayout(panel1, BoxLayout.PAGE_AXIS));
         JLabel jlabel = new JLabel("Réglages");
-        jlabel.setFont(new Font("Verdana",1,20));
+        jlabel.setFont(new Font("Verdana", 1, 20));
         jlabel.setForeground(Color.red);
         panel1.add(jlabel);
 
@@ -48,10 +48,10 @@ public class SettingPage extends JFrame {
         porteeTortue = new JFormattedTextField(formatter);
         formatter.setMaximum(150);
         porteeBombe = new JFormattedTextField(formatter);
-        JLabel label1 =new JLabel("Nombre de groupe :");
-        JLabel label2 =new JLabel("Nombre de tortue par groupe :");
-        JLabel label3 =new JLabel("Portée de la vue d'une tortue :");
-        JLabel label4 =new JLabel("Portée de la bombe :");
+        JLabel label1 = new JLabel("Nombre de groupe :");
+        JLabel label2 = new JLabel("Nombre de tortue par groupe :");
+        JLabel label3 = new JLabel("Portée de la vue d'une tortue :");
+        JLabel label4 = new JLabel("Portée de la bombe :");
         label1.setForeground(Color.white);
         label2.setForeground(Color.white);
         label3.setForeground(Color.white);
@@ -95,31 +95,34 @@ public class SettingPage extends JFrame {
             Number n = (Number) this.nbGroupe.getValue();
             return n.intValue();
         } catch (Exception e) {
-            return 0;
+            return 1;
         }
     }
+
     public int getNbTortues() {
         try {
-        Number n = (Number)this.nbTortues.getValue();
-        return n.intValue();
+            Number n = (Number) this.nbTortues.getValue();
+            return n.intValue();
         } catch (Exception e) {
-            return 0;
+            return 1;
         }
     }
+
     public int getPorteeTortue() {
         try {
-        Number n = (Number)this.porteeTortue.getValue();
-        return n.intValue();
+            Number n = (Number) this.porteeTortue.getValue();
+            return n.intValue();
         } catch (Exception e) {
-            return 0;
+            return 1;
         }
     }
+
     public int getPorteeBombe() {
         try {
-        Number n = (Number)this.porteeBombe.getValue();
-        return n.intValue();
+            Number n = (Number) this.porteeBombe.getValue();
+            return n.intValue();
         } catch (Exception e) {
-            return 0;
+            return 1;
         }
     }
 
