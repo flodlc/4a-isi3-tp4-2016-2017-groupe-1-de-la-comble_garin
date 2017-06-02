@@ -18,15 +18,15 @@ public class TortueView extends JPanel implements Observer {
     private Color couleur;
     private Polygon dessinTortue;
     private Forme forme;
-    private FeuilleDessinView feuilleDessinView;
+    private AbstractFeuilleDessin feuilleDessinView;
 
-    public TortueView(Tortue tortue, String forme, FeuilleDessinView feuilleDessinView) {
+    public TortueView(Tortue tortue, String forme, AbstractFeuilleDessin feuilleDessinView) {
         this.tortue = tortue;
         this.tortue.addObserver(this);
         setForme(forme);
         this.dessinTortue = this.forme.getPolygon(tortue);
-        this.addMouseListener(new TortueMouseListener(this));
         this.feuilleDessinView = feuilleDessinView;
+        this.setLocation((int) this.tortue.getX(), (int) this.tortue.getY());
     }
 
     public void paintComponent(Graphics g) {
@@ -38,10 +38,11 @@ public class TortueView extends JPanel implements Observer {
         at.rotate(Math.toRadians(tortue.getOrientation()), tortue.getTaille()/2, tortue.getTaille()/2);
         ((Graphics2D)g).rotate(Math.toRadians(tortue.getOrientation()), tortue.getTaille()/2, tortue.getTaille()/2);
         g.fillPolygon(dessinTortue);
-        this.setLocation((int) this.tortue.getX(), (int) this.tortue.getY());
     }
 
     public void update(Observable o, Object arg) {
+        super.repaint();
+        this.setLocation((int) this.tortue.getX(), (int) this.tortue.getY());
         this.repaint();
     }
 

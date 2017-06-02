@@ -1,8 +1,10 @@
 package controller;
 
 import model.Tortue;
+import view.AbstractSimpleLogoView;
 import view.FormeRectangle;
 import view.SimpleLogoView;
+import view.SimpleLogoViewGame;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -14,8 +16,7 @@ import java.util.Random;
 public abstract class ControllerMain {
 
     protected ArrayList<Tortue> listTortues;
-    protected SimpleLogoView simpleLogoView;
-    protected int vitesse;
+    protected AbstractSimpleLogoView simpleLogoView;
     protected ArrayList<Color> colors;
 
     public ControllerMain() {
@@ -24,11 +25,13 @@ public abstract class ControllerMain {
         this.colors.add(Color.BLACK);
         this.colors.add(Color.GREEN);
         this.colors.add(Color.YELLOW);
-        this.simpleLogoView = new SimpleLogoView(this);
         this.listTortues = new ArrayList<Tortue>();
-        this.vitesse = 15;
-        for (int j = 0; j < 1; j++) {
-            for (int i = 0; i < 300; i++) {
+    }
+
+
+    protected void startPopulation(int nbGroup, int nbByGroup) {
+        for (int j = 0; j < nbGroup; j++) {
+            for (int i = 0; i < nbByGroup; i++) {
                 this.createTortue(j);
             }
         }
@@ -36,10 +39,7 @@ public abstract class ControllerMain {
             tortue.aleatoireMove(listTortues);
         }
         startFlocking();
-
-
     }
-
 
     public void startFlocking() {
         new Thread() {
@@ -47,7 +47,7 @@ public abstract class ControllerMain {
                 while (true) {
                     moveFlocking();
                     try {
-                        sleep(10);
+                        sleep(20);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -64,7 +64,7 @@ public abstract class ControllerMain {
 
     }
 
-    public SimpleLogoView getSimpleLogoView() {
+    public AbstractSimpleLogoView getSimpleLogoView() {
         return simpleLogoView;
     }
 
@@ -72,7 +72,7 @@ public abstract class ControllerMain {
         Random rd = new Random();
         int x = 200 + rd.nextInt(300);
         int y = 200 + rd.nextInt(300);
-        Tortue tortue = new Tortue(x, y, colors.get(coul), new FormeRectangle(), this.vitesse, 5, 1);
+        Tortue tortue = new Tortue(x, y, colors.get(coul), new FormeRectangle(), 15, 10, 1);
         this.listTortues.add(tortue);
         this.simpleLogoView.addTortue(tortue);
     }

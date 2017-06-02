@@ -38,8 +38,8 @@ public class Tortue extends Observable {
     public double taille;
     public int vitesse; // distance parcourue a chaque ité
     public int separation; // distance minimale a laisser entre chaque tortue
-    public int champDeVision = 75; // A changer eventuellement
-    public double distance = 50;
+    public int champDeVision = 120; // A changer eventuellement
+    public double distance = 60;
     private static int SIZE_GAME = 700;
 
 
@@ -140,7 +140,7 @@ public class Tortue extends Observable {
             vitesseMoyenne += tortue.getVitesse();
         }
 
-        return (listTortues.size() > 0) ? vitesseMoyenne / listTortues.size() : 10;
+        return (listTortues.size() > 0) ? vitesseMoyenne / listTortues.size() : 15;
         //return 5;
     }
 

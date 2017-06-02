@@ -21,48 +21,10 @@ import java.util.List;
  */
 
 
-public class FeuilleDessinView extends JPanel {
-
-    private Map<Tortue, TortueView> map;
-    private SimpleLogoView simpleLogoView;
+public class FeuilleDessinView extends AbstractFeuilleDessin {
 
     public FeuilleDessinView(SimpleLogoView simpleLogoView) {
-        feuilleDessinInit();
+        super();
         this.simpleLogoView = simpleLogoView;
-        map = new HashMap<Tortue, TortueView>();
-    }
-
-    public void feuilleDessinInit() {
-        setBackground(Color.white);
-        setPreferredSize(new Dimension(700, 700));
-    }
-
-
-    public void addTortue(Tortue tortue) {
-        TortueView tortueView = new TortueView(tortue,"Rectangle", this);
-        map.put(tortue, tortueView);
-        Graphics graphics = getGraphics();
-        Dimension dim = getSize();
-        graphics.clearRect(0, 0, dim.width, dim.height);
-        paintComponent(getGraphics());
-    }
-
-
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
-        Color c = g.getColor();
-        Dimension dim = getSize();
-        g.setColor(Color.white);
-        g.fillRect(0, 0, dim.width, dim.height);
-        g.setColor(c);
-        showTurtles(g);
-    }
-
-    public void showTurtles(Graphics g) {
-        for (Map.Entry<Tortue, TortueView> entry : map.entrySet()) {
-            TortueView tortueView = entry.getValue();
-            this.add(tortueView);
-        }
     }
 }
