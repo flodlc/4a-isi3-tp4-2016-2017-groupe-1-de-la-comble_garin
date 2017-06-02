@@ -9,21 +9,23 @@ public class Bombe extends Observable{
     private int size;
     private int x;
     private int y;
+    private int maxSizeExplosion;
     private int explosionSize;
     private int time;
 
-    public Bombe(int size, int x, int y) {
+    public Bombe(int size, int x, int y, int maxSizeExplosion) {
         this.size = size;
         this.x = x;
         this.y = y;
         this.time = 300;
+        this.maxSizeExplosion = maxSizeExplosion;
         this.explode();
     }
 
     private void explode() {
         new Thread() {
             public void run() {
-                while (getExplosionSize() < 60) {
+                while (getExplosionSize() < maxSizeExplosion) {
                     setExplosionSize(getExplosionSize() + 15);
                     setChanged();
                     notifyObservers();
@@ -77,5 +79,9 @@ public class Bombe extends Observable{
 
     public void setExplosionSize(int explosionSize) {
         this.explosionSize = explosionSize;
+    }
+
+    public int getMaxSizeExplosion() {
+        return this.maxSizeExplosion;
     }
 }

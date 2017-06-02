@@ -12,12 +12,14 @@ public class ControllerGame extends ControllerMain {
     public ControllerGame() {
         super();
         this.simpleLogoView = new SimpleLogoViewGame(this);
-        this.startPopulation(1, 300);
-
+        this.startPopulation(1, 2);
     }
 
     public void layBombe(int x, int y) {
-        Bombe bombe = new Bombe(10, x, y);
+        Bombe bombe = new Bombe(10, x, y, 60);
         ((SimpleLogoViewGame) simpleLogoView).addBombe(bombe);
+        for (Tortue tortue : super.listTortues){
+            tortue.checkBombe(bombe);
+        }
     }
 }

@@ -38,6 +38,7 @@ public class Tortue extends Observable {
     public double taille;
     public int vitesse; // distance parcourue a chaque ité
     public int separation; // distance minimale a laisser entre chaque tortue
+    public int iterOutOfFlocking;
     public int champDeVision = 120; // A changer eventuellement
     public double distance = 60;
     private static int SIZE_GAME = 700;
@@ -51,6 +52,7 @@ public class Tortue extends Observable {
         this.taille = taille;
         this.vitesse = vitesse;
         this.separation = separation;
+        this.iterOutOfFlocking = 0;
     }
 
     public void avancer() {
@@ -91,9 +93,13 @@ public class Tortue extends Observable {
     FLOCKING
 	 */
     public void flocking(ArrayList<Tortue> listTortues) {
-        listTortues = getTortuesInFront(listTortues);
-        this.setVitesse(getVitesseMoyenne(listTortues));
-        this.setOrientation(getOrientationMoyenne(listTortues));
+        if (this.iterOutOfFlocking == 0) {
+            listTortues = getTortuesInFront(listTortues);
+            this.setOrientation(getOrientationMoyenne(listTortues));
+        } else {
+            System.out.println(iterOutOfFlocking);
+            this.iterOutOfFlocking--;
+        }
         this.avancer();
     }
 
@@ -102,7 +108,7 @@ public class Tortue extends Observable {
         //On elimine celles qui sont deriere
         ArrayList<Tortue> list = new ArrayList<Tortue>();
         for (Tortue tortue : listTortues) {
-            if (tortue.getColor() == coul && this.estADistance(tortue) && this.estDansChamp(tortue)) {
+            if (tortue.getColor() == coul && this.estADistance(tortue) && this.estDansChamp(tortue.getX(), tortue.getY())) {
                 list.add(tortue);
             }
         }
@@ -117,31 +123,19 @@ public class Tortue extends Observable {
         return Math.sqrt((Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2)));
     }
 
-    public boolean estDansChamp(Tortue tortue) {
-        return Math.toDegrees(getAngle(tortue)) < champDeVision / 2;
+    public boolean estDansChamp(double x2, double y2) {
+        return Math.toDegrees(getAngle(x2, y2)) < champDeVision / 2;
     }
 
-    private double getAngle(Tortue tortue) {
+    private double getAngle(double x2, double y2) {
         double tmpX = Math.round(x + 10 * Math.cos(ratioDegRad * dir));
         double tmpY = Math.round(y + 10 * Math.sin(ratioDegRad * dir));
-        double a = getDistance(x, y, tortue.getX(), tortue.getY());
+        double a = getDistance(x, y, x2, y2);
         double b = getDistance(x, y, tmpX, tmpY);
-        double c = getDistance(tmpX, tmpY, tortue.getX(), tortue.getY());
+        double c = getDistance(tmpX, tmpY, x2, y2);
         //double division = (Math.pow(c, 2) - Math.pow(a, 2) - Math.pow(b, 2)) / (2 * a * c);
         double division = (Math.pow(a, 2) + Math.pow(b, 2) - Math.pow(c, 2))/(2*a*b);
         return Math.acos(division);
-    }
-
-    //retourne la vitesse moyenne de la liste de tortue
-    public int getVitesseMoyenne(ArrayList<Tortue> listTortues) {
-
-        int vitesseMoyenne = 0;
-        for (Tortue tortue : listTortues) {
-            vitesseMoyenne += tortue.getVitesse();
-        }
-
-        return (listTortues.size() > 0) ? vitesseMoyenne / listTortues.size() : 15;
-        //return 5;
     }
 
     //retourne l'orientation moyenne de la liste de tortue
@@ -158,6 +152,16 @@ public class Tortue extends Observable {
         int angle = (int) (Math.random() * 360);
         this.setOrientation(angle % 360);
         avancer();
+    }
+
+    public void checkBombe(Bombe bombe) {
+        if (this.getDistance(this.x, this.y, bombe.getX(), bombe.getY()) <= bombe.getMaxSizeExplosion()) {
+            this.iterOutOfFlocking = 50;
+            this.dir = 180 - (int)this.getAngle(bombe.getX(), bombe.getY());
+
+            setChanged();
+            notifyObservers();
+        }
     }
 
     /*
