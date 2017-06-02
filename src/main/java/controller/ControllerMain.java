@@ -70,7 +70,7 @@ public abstract class ControllerMain {
         Random rd = new Random();
         int x = 200 + rd.nextInt(300);
         int y = 200 + rd.nextInt(300);
-        Tortue tortue = new Tortue(x, y, colors.get(coul), new FormeRectangle(), 15, 5, 1);
+        Tortue tortue = new Tortue(x, y, colors.get(coul), new FormeRectangle(), 15, 10, 1);
         this.listTortues.add(tortue);
         this.simpleLogoView.addTortue(tortue);
     }

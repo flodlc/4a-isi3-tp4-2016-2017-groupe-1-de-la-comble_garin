@@ -21,13 +21,13 @@ public class BombeView extends JPanel implements Observer{
     public BombeView(Bombe bombe) {
         this.bombe = bombe;
         bombe.addObserver(this);
-        this.setSize(bombe.getSize(), bombe.getSize());
+        this.setSize(this.bombe.getMaxSizeExplosion()*2, this.bombe.getMaxSizeExplosion()*2);
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         this.setBackground(Color.white);
-        this.setSize(100, 100);
+        this.setSize(this.bombe.getMaxSizeExplosion()*2, this.bombe.getMaxSizeExplosion()*2);
         this.setLocation(bombe.getX() - 50, bombe.getY() - 50);
         this.setOpaque(false);
         g.setColor(Color.red);

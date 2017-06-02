@@ -97,7 +97,6 @@ public class Tortue extends Observable {
             listTortues = getTortuesInFront(listTortues);
             this.setOrientation(getOrientationMoyenne(listTortues));
         } else {
-            System.out.println(iterOutOfFlocking);
             this.iterOutOfFlocking--;
         }
         this.avancer();
@@ -133,7 +132,6 @@ public class Tortue extends Observable {
         double a = getDistance(x, y, x2, y2);
         double b = getDistance(x, y, tmpX, tmpY);
         double c = getDistance(tmpX, tmpY, x2, y2);
-        //double division = (Math.pow(c, 2) - Math.pow(a, 2) - Math.pow(b, 2)) / (2 * a * c);
         double division = (Math.pow(a, 2) + Math.pow(b, 2) - Math.pow(c, 2))/(2*a*b);
         return Math.acos(division);
     }
@@ -156,8 +154,8 @@ public class Tortue extends Observable {
 
     public void checkBombe(Bombe bombe) {
         if (this.getDistance(this.x, this.y, bombe.getX(), bombe.getY()) <= bombe.getMaxSizeExplosion()) {
-            this.iterOutOfFlocking = 50;
-            this.dir = 180 - (int)this.getAngle(bombe.getX(), bombe.getY());
+            this.iterOutOfFlocking = 100;
+            this.dir = 180 - (int)Math.toDegrees(this.getAngle(bombe.getX(), bombe.getY()));
 
             setChanged();
             notifyObservers();
