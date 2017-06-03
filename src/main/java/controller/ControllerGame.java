@@ -10,15 +10,15 @@ import view.SimpleLogoViewGame;
 public class ControllerGame extends ControllerMain {
     private int porteeBombe;
 
-    public ControllerGame(int nbGroupe, int nbTortues, int porteeTortue, int porteeBombe) {
+    public ControllerGame(int nbGroupe, int nbTortues, int champVision, int porteeBombe) {
         super();
         this.porteeBombe = porteeBombe;
         this.simpleLogoView = new SimpleLogoViewGame(this);
-        this.startPopulation(nbGroupe, nbTortues, porteeTortue);
+        this.startPopulation(nbGroupe, nbTortues, champVision);
     }
 
     public void layBombe(int x, int y) {
-        Bombe bombe = new Bombe(10, x, y, 100);
+        Bombe bombe = new Bombe(10, x, y, porteeBombe);
         ((SimpleLogoViewGame) simpleLogoView).addBombe(bombe);
         for (Tortue tortue : super.listTortues){
             tortue.checkBombe(bombe);

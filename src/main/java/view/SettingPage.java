@@ -16,7 +16,7 @@ public class SettingPage extends JFrame {
     private ControllerHomePage controller;
     private JFormattedTextField nbGroupe;
     private JFormattedTextField nbTortues;
-    private JFormattedTextField porteeTortue;
+    private JFormattedTextField champVision;
     private JFormattedTextField porteeBombe;
 
     public SettingPage(ControllerHomePage controller) {
@@ -33,25 +33,14 @@ public class SettingPage extends JFrame {
         jlabel.setForeground(Color.red);
         panel1.add(jlabel);
 
-        NumberFormat format = NumberFormat.getInstance();
-        NumberFormatter formatter = new NumberFormatter(format);
-        formatter.setValueClass(Integer.class);
-        formatter.setMinimum(1);
-        formatter.setMaximum(4);
-        formatter.setAllowsInvalid(false);
-        // If you want the value to be committed on each keystroke instead of focus lost
-        formatter.setCommitsOnValidEdit(true);
-        nbGroupe = new JFormattedTextField(formatter);
-        formatter.setMaximum(100);
-        nbTortues = new JFormattedTextField(formatter);
-        formatter.setMaximum(200);
-        porteeTortue = new JFormattedTextField(formatter);
-        formatter.setMaximum(150);
-        porteeBombe = new JFormattedTextField(formatter);
-        JLabel label1 = new JLabel("Nombre de groupe :");
-        JLabel label2 = new JLabel("Nombre de tortue par groupe :");
-        JLabel label3 = new JLabel("Portée de la vue d'une tortue :");
-        JLabel label4 = new JLabel("Portée de la bombe :");
+        nbGroupe = createFormattedTextField(0, 4, 1);
+        nbTortues = createFormattedTextField(0, 250, 200);
+        champVision = createFormattedTextField(0, 360, 120);
+        porteeBombe = createFormattedTextField(0, 100, 70);
+        JLabel label1 = new JLabel("Nombre de groupe (0 - 4) :");
+        JLabel label2 = new JLabel("Nombre de tortue par groupe (0 - 250) :");
+        JLabel label3 = new JLabel("Champ de vision d'une tortue (0 - 360 en dégrés) :");
+        JLabel label4 = new JLabel("Portée de la bombe (0 - 100) :");
         label1.setForeground(Color.white);
         label2.setForeground(Color.white);
         label3.setForeground(Color.white);
@@ -62,7 +51,7 @@ public class SettingPage extends JFrame {
         panel1.add(label2);
         panel1.add(nbTortues);
         panel1.add(label3);
-        panel1.add(porteeTortue);
+        panel1.add(champVision);
         panel1.add(label4);
         panel1.add(porteeBombe);
         panel1.setBackground(new Color(0, 61, 79));
@@ -83,6 +72,19 @@ public class SettingPage extends JFrame {
         this.setIconImage(icon.getImage());
 
         this.setVisible(true);
+    }
+
+    private JFormattedTextField createFormattedTextField(int min, int max, int defaultValue) {
+        NumberFormat format = NumberFormat.getInstance();
+        NumberFormatter formatter = new NumberFormatter(format);
+        formatter.setValueClass(Integer.class);
+        formatter.setMinimum(min);
+        formatter.setMaximum(max);
+        formatter.setAllowsInvalid(true);
+        formatter.setCommitsOnValidEdit(false);
+        JFormattedTextField jFormattedTextField = new JFormattedTextField(formatter);
+        jFormattedTextField.setValue(defaultValue);
+        return jFormattedTextField;
     }
 
     public void close() {
@@ -110,7 +112,7 @@ public class SettingPage extends JFrame {
 
     public int getPorteeTortue() {
         try {
-            Number n = (Number) this.porteeTortue.getValue();
+            Number n = (Number) this.champVision.getValue();
             return n.intValue();
         } catch (Exception e) {
             return 1;
