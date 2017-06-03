@@ -14,7 +14,7 @@ public class FeuilleDessinListener implements MouseListener {
     }
 
     public void mouseClicked(MouseEvent e) {
-
+        return;
     }
 
     public void mousePressed(MouseEvent e) {
@@ -22,14 +22,14 @@ public class FeuilleDessinListener implements MouseListener {
     }
 
     public void mouseReleased(MouseEvent e) {
-
+        return;
     }
 
     public void mouseEntered(MouseEvent e) {
-
+        return;
     }
 
     public void mouseExited(MouseEvent e) {
-
+        return;
     }
 }
