@@ -38,7 +38,7 @@ public class AbstractSimpleLogoView extends JFrame {
         getContentPane().add(feuilleDessinView, "Center");
         setResizable(false);
         pack();
-        ImageIcon icon = new ImageIcon("images/favicon.png");
+        ImageIcon icon = new ImageIcon(getClass().getResource("/images/favicon.png"));
         this.setIconImage(icon.getImage());
         setVisible(true);
     }

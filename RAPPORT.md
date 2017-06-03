@@ -7,7 +7,7 @@
 # Rapport TP4
 
 ## Question 1
-![IMAGE](images/tp4.png)
+![IMAGE](resources/images/tp4.png)
 
 "Diagramme de classe initial"
 
@@ -24,7 +24,7 @@ Enfin, le main est dans la méthode SimpleLogo. Il faudrait plutot créer un lau
 application.
 
 ## Question 2
-![IMAGE](images/tp4_2.png)
+![IMAGE](resources/images/tp4_2.png)
 
 "Diagramme du code suivant le modèle MVC"
 
@@ -32,7 +32,7 @@ application.
 *Rien à rédiger*
 
 ## Question 4
-![IMAGE](images/tp4_4.png)
+![IMAGE](resources/images/tp4_4.png)
 
 Ce diagramme était celui du début de notre projet, avant la mise en place du flocking et de l'extension. Lors de cette version, on pouvait ajouter des tortues, en sélectionner une qui devenait la tortue courante et la contrôler avec les flèches du clavier. On a hésiter à combiner cette option de contrôle de tortue avec le flocking mais on est finalement partis sur le principe de bombes. 
 
@@ -42,7 +42,7 @@ Ce diagramme était celui du début de notre projet, avant la mise en place du f
 Flocking:
 Au lancement de l'application, chacune des tortues éparpillées sur le terrain adopte une direction aléatoire et une vitesse. Ensuite, on lance un flocking en boucle. Le controleur parcours en permanence la liste des tortues en lançant leur méthode flocking().
 
-![IMAGE](images/flocking.png)
+![IMAGE](resources/images/flocking.png)
 
 
 On récupère la liste des tortues visibles par la tortue (en fonction de son champ de vision et la portée de sa vue). Ensuite, si elle voie des tortues, on va recalculer sa direction à partir de la moyenne de la direction de toutes les tortues qu'elle voie. On a utiliser Al Kashi pour calculer la nouvelle direction. 
@@ -58,7 +58,7 @@ Dans le mode Bombe , l'utilisateur a la possibilité de poser une bombe en cliqu
 
 ## Diagramme de classe:
 
-![IMAGE](images/uml1.png)
+![IMAGE](resources/images/uml1.png)
 
 Nous avons utiliser un pattern abstract factory qui nous permet de créer les deux modes de jeux. Ici c'est la classe ControllerMain qui joue le rôle d'abstract Factory et les deux classes ControllerAleatoire et ControllerGame (mode bombe) jouent le rôle de Factory. En plus decréer les différents objet,ces classes jouent le rôle de controlleurs. 
 

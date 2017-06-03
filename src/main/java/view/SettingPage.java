@@ -68,7 +68,7 @@ public class SettingPage extends JFrame {
         button.setForeground(Color.WHITE);
         this.add(button);
         //favicon
-        ImageIcon icon = new ImageIcon("images/favicon.png");
+        ImageIcon icon = new ImageIcon(getClass().getResource("/images/favicon.png"));
         this.setIconImage(icon.getImage());
 
         this.setVisible(true);

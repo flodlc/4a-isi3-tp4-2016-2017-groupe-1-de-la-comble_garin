@@ -20,7 +20,7 @@ public class HomePagePanel extends JPanel {
         this.setLayout(new BorderLayout());
         JPanel title = new JPanel();
         title.setBorder(new EmptyBorder(10, 10, 30, 10));
-        JLabel positionLabel = new JLabel(new ImageIcon("images/image.png"));
+        JLabel positionLabel = new JLabel(new ImageIcon(getClass().getResource("/images/image.png")));
         title.add(positionLabel);
         title.setBackground(new Color(0, 61, 79));
         this.add(title, BorderLayout.NORTH);
